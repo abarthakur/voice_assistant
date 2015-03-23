@@ -118,3 +118,50 @@ def reload():
 	kboard.press_key(kboard.control_l_key)
 	kboard.tap_key(kboard.function_keys[5])
 	kboard.release_key(kboard.control_l_key)
+
+def bookmark(): # Adds a bookmark
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.tap_key('d')
+	kboard.release_key(kboard.control_l_key)
+	kboard.tap_key(kboard.enter_key)
+
+def open_bookmark(): # Open the bookmark Window
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.press_key(kboard.shift_key)
+	kboard.tap_key('o')
+	kboard.release_key(kboard.shift_key)
+	kboard.release_key(kboard.control_l_key)
+	
+def history(): # Display the History window
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.tap_key('h')
+	kboard.release_key(kboard.control_l_key)
+
+def delete_history(): # Delete the History
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.press_key(kboard.shift_key)
+	kboard.tap_key(kboard.delete_key)
+	kboard.release_key(kboard.shift_key)
+	kboard.release_key(kboard.control_l_key)
+
+def print_page(): # Prompt the user to Print Window
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.tap_key('p')
+	kboard.release_key(kboard.control_l_key)
+
+def save_page(): # Prompt the user to save window
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.tap_key('s')
+	kboard.release_key(kboard.control_l_key)
