@@ -56,3 +56,38 @@ def previous_tab(): # Navigate to tab on left
 	kboard.tap_key(kboard.tab_key)
 	kboard.release_key(kboard.shift_key)
 	kboard.release_key(kboard.control_l_key)
+
+def scroll_down(): # Scroll Down
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.tap_key(kboard.down_key)
+	kboard.tap_key(kboard.down_key)
+
+def scroll_up(): # Scroll Up
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.tap_key(kboard.up_key)
+	kboard.tap_key(kboard.up_key)
+
+def search_page(string): # Search for a particular term in the page
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.tap_key('f')
+	kboard.release_key(kboard.control_l_key)
+	time.sleep(.1)
+	kboard.type_string(string)
+
+def zoom_in(): # Zoom in the current tab
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.tap_key('+')
+	kboard.release_key(kboard.control_l_key)
+
+def zoom_out(): # Zoom out the current tab
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.tap_key('-')
+	kboard.release_key(kboard.control_l_key)
