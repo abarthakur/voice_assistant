@@ -59,8 +59,8 @@ in_len=0
 for inp in in_splits:
 	in_len+=len(inp)
 
-w1=1
-w2=1
+w1=0.8
+w2=0.5
 score1=w1*float(top_score)/float(in_len)
 score2=w2*float(top_words)/float(out_len)
 print "input_string: ",score1," output_string: ",score2
@@ -70,6 +70,6 @@ print filenames[select_ptr]
 add=fileraw[select_ptr]
 add=add.replace(" ","\ ");
 cmd="xdg-open "+music_dir+"/"+add
-if score>0.57:
+if score>0.6:
 	print cmd
 	os.system(cmd)
