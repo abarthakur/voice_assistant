@@ -67,3 +67,9 @@ print "input_string: ",score1," output_string: ",score2
 score =score1+score2
 print  score
 print filenames[select_ptr]
+add=fileraw[select_ptr]
+add=add.replace(" ","\ ");
+cmd="xdg-open "+music_dir+"/"+add
+if score>0.57:
+	print cmd
+	os.system(cmd)
