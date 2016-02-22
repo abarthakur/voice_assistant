@@ -1,6 +1,7 @@
 # The aim of this file is to search a music file by name and play it randomly
 import os
 import subprocess
+import re
 
 sample_input=raw_input("Enter the command : ")
 sample_input=sample_input.lower()
@@ -19,4 +20,13 @@ fileraw=temp.split("\n")
 filenames=[]
 for name in fileraw:
 	filenames.append(name.lower())
-print filenames
+
+
+filekeys=[]
+count=0
+for name in filenames:
+	a=re.split('[,\+!.\-@\(\)\{\}\~\"\[\]_# ]*',name)
+	filekeys.append(a)
+	count=count+1
+
+print filekeys
