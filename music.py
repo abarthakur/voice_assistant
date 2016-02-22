@@ -48,4 +48,5 @@ for command in priority_key:
 			break;
 
 print selected
+system(cmd[selected])
 
