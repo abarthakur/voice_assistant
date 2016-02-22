@@ -54,3 +54,16 @@ for file in filekeys:
 	temp_words=0
 out_len=len(selected);
 print selected
+
+in_len=0
+for inp in in_splits:
+	in_len+=len(inp)
+
+w1=1
+w2=1
+score1=w1*float(top_score)/float(in_len)
+score2=w2*float(top_words)/float(out_len)
+print "input_string: ",score1," output_string: ",score2
+score =score1+score2
+print  score
+print filenames[select_ptr]
