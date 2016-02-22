@@ -8,6 +8,7 @@ sample_input=sample_input.lower()
 gutter=["play ","music ","song ","listen ","hear "];
 for gt in gutter:
 	sample_input=sample_input.replace(gt,'');
+in_splits=sample_input.split(); # Splits input string
 
 music_dir="~/Music/English\ Music"
 
@@ -28,8 +29,6 @@ for name in filenames:
 	a=re.split('[,\+!.\-@\(\)\{\}\~\"\[\]_# ]*',name)
 	filekeys.append(a)
 	count=count+1
-
-print filekeys
 
 pointer=-1;
 select_ptr=-1;
