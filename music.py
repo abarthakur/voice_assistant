@@ -22,3 +22,15 @@ cmd['hide']="rhythmbox-client --quit"
 cmd['err_message']="print 'Sorry unknown command'"
 cmd['quit']="rhythmbox-client --quit"
 
+#Controller begins
+priority_key={}
+priority_key['next']=['next']
+priority_key['previous']=['previous']
+priority_key['pause']=['pause','stop']
+priority_key['hide']=['hide']
+priority_key['quit']=['quit','close']
+priority_key['vol-up']=['increase','up','raise','high']
+priority_key['vol-down']=['decrease','down','lower','low','reduce']
+priority_key['play']=['play','start','music','song','listen','rhythmbox','current']
+
+
