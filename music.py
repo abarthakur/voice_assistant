@@ -33,4 +33,19 @@ priority_key['vol-up']=['increase','up','raise','high']
 priority_key['vol-down']=['decrease','down','lower','low','reduce']
 priority_key['play']=['play','start','music','song','listen','rhythmbox','current']
 
+def search(word,command,priority_key):
+    if word in priority_key[command]:
+        return 1
+    return 0
+
+str_split=input_cmd.split()
+selected="err_message"
+
+for command in priority_key:
+	for word in str_split:
+		if(search(word,command,priority_key)):
+			selected=command
+			break;
+
+print selected
 
