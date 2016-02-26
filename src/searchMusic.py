@@ -70,7 +70,30 @@ score =score1+score2
 print  score
 print filenames[select_ptr]
 add=fileraw[select_ptr]
-add=add.replace(" ","\ ");
+add=add.replace(" ","\ ")
+add=add.replace("[","\[")
+add=add.replace("(","\(")
+add=add.replace(")","\)")
+add=add.replace("]","\]")
+add=add.replace(",","\,")
+add=add.replace("+","\+")
+add=add.replace("-","\-")
+add=add.replace("/","\/")
+add=add.replace("*","\*")
+add=add.replace("!","\!")
+add=add.replace("@","\@")
+add=add.replace("#","\#")
+add=add.replace("$","\$")
+add=add.replace("%","\%")
+add=add.replace("^","\^")
+add=add.replace("&","\&")
+add=add.replace("_","\_")
+add=add.replace("=","\=")
+add=add.replace("?","\?")
+add=add.replace("<","\<")
+add=add.replace(">","\>")
+add=add.replace(".","\.")
+add=add.replace(";","\;")
 cmd="xdg-open "+music_dir+"/"+add
 if score>0.6:
 	print cmd
@@ -80,6 +103,7 @@ else:
 	cmnd={'pause':"rhythmbox-client --pause"}
 	cmnd['next']="rhythmbox-client --play \n rhythmbox-client --next"
 	cmnd['previous']="rhythmbox-client --play \n rhythmbox-client --previous"
+	cmnd['restart']="rhythmbox-client --play \n rhythmbox-client --previous"
 	cmnd['play']="rhythmbox-client --play"
 	cmnd['vol-up']="rhythmbox-client --volume-up"
 	cmnd['vol-down']="rhythmbox-client --volume-down"
@@ -90,7 +114,8 @@ else:
 	#Controller begins
 	priority_key={}
 	priority_key['next']=['next']
-	priority_key['previous']=['previous']
+	priority_key['previous']=['previous','last']
+	priority_key['restart']=['restart','repeat','replay','again']
 	priority_key['pause']=['pause','stop']
 	priority_key['hide']=['hide']
 	priority_key['quit']=['quit','close']
@@ -113,4 +138,8 @@ else:
 				break;	
 
 	print selected
-	system(cmnd[selected])
+	if selected == 'previous':
+		system(cmnd[selected])
+		system(cmnd[selected])
+	else :
+		system(cmnd[selected])
