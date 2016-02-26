@@ -1,3 +1,7 @@
+# speech_recognition
+# Copyright (c) 2014-2016, Anthony Zhang <azhang9@gmail.com>
+# All rights reserved.
+# Sample Code taken from __main__.py
 import speech_recognition as sr
 r = sr.Recognizer()
 m = sr.Microphone()
