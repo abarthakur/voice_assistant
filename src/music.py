@@ -7,7 +7,7 @@ from os import system
 
 # Variables needed
 music_dir="~/Music/English Music"
-mman
+
 # Taking text input as command
 input_cmd=raw_input("Enter the command : ")
 
@@ -50,9 +50,9 @@ for command in priority_key:
 			break;
 
 print selected
-	if selected == 'previous':
-		system(cmd[selected])
-		system(cmd[selected])
-	else :
-		system(cmd[selected])
+if selected == 'previous':
+	system(cmd[selected])
+	system(cmd[selected])
+else :
+	system(cmd[selected])
 
