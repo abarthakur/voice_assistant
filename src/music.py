@@ -7,7 +7,7 @@ from os import system
 
 # Variables needed
 music_dir="~/Music/English Music"
-
+mman
 # Taking text input as command
 input_cmd=raw_input("Enter the command : ")
 
@@ -15,6 +15,7 @@ input_cmd=raw_input("Enter the command : ")
 cmd={'pause':"rhythmbox-client --pause"}
 cmd['next']="rhythmbox-client --play \n rhythmbox-client --next"
 cmd['previous']="rhythmbox-client --play \n rhythmbox-client --previous"
+cmd['restart']="rhythmbox-client --play \n rhythmbox-client --previous"
 cmd['play']="rhythmbox-client --play"
 cmd['vol-up']="rhythmbox-client --volume-up"
 cmd['vol-down']="rhythmbox-client --volume-down"
@@ -25,7 +26,8 @@ cmd['quit']="rhythmbox-client --quit"
 #Controller begins
 priority_key={}
 priority_key['next']=['next']
-priority_key['previous']=['previous']
+priority_key['previous']=['previous','last']
+priority_key['restart']=['restart','repeat','replay','again']
 priority_key['pause']=['pause','stop']
 priority_key['hide']=['hide']
 priority_key['quit']=['quit','close']
@@ -48,5 +50,9 @@ for command in priority_key:
 			break;
 
 print selected
-system(cmd[selected])
+	if selected == 'previous':
+		system(cmd[selected])
+		system(cmd[selected])
+	else :
+		system(cmd[selected])
 
