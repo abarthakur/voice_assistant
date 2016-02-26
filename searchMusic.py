@@ -2,6 +2,8 @@
 import os
 import subprocess
 import re
+from os import system
+
 
 sample_input=raw_input("Enter the command : ")
 sample_input=sample_input.lower()
@@ -73,3 +75,42 @@ cmd="xdg-open "+music_dir+"/"+add
 if score>0.6:
 	print cmd
 	os.system(cmd)
+else:
+	#setting up the commands
+	cmnd={'pause':"rhythmbox-client --pause"}
+	cmnd['next']="rhythmbox-client --play \n rhythmbox-client --next"
+	cmnd['previous']="rhythmbox-client --play \n rhythmbox-client --previous"
+	cmnd['play']="rhythmbox-client --play"
+	cmnd['vol-up']="rhythmbox-client --volume-up"
+	cmnd['vol-down']="rhythmbox-client --volume-down"
+	cmnd['hide']="rhythmbox-client --quit"
+	cmnd['err_message']="print 'Sorry unknown command'"
+	cmnd['quit']="rhythmbox-client --quit"
+
+	#Controller begins
+	priority_key={}
+	priority_key['next']=['next']
+	priority_key['previous']=['previous']
+	priority_key['pause']=['pause','stop']
+	priority_key['hide']=['hide']
+	priority_key['quit']=['quit','close']
+	priority_key['vol-up']=['increase','up','raise','high']
+	priority_key['vol-down']=['decrease','down','lower','low','reduce']
+	priority_key['play']=['play','start','music','song','listen','rhythmbox','current']
+
+	def search(word,command,priority_key):
+	    if word in priority_key[command]:
+	        return 1
+	    return 0
+
+	str_split=sample_input.split()
+	selected="err_message"
+
+	for command in priority_key:
+		for word in str_split:
+			if(search(word,command,priority_key)):
+				selected=command
+				break;	
+
+	print selected
+	system(cmnd[selected])
