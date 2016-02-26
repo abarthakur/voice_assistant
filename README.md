@@ -1,4 +1,17 @@
-# Voice Assistant 
+# Voice Assistant
+
+## Table of Contents:
+
+ **I. Introduction**
+ 
+ **II. Requirements**
+ 
+ **III. Features**
+ 
+ **IV. License**
+
+---------------------
+## I. Introduction
 
 **Voice Assistant** is a "*voice-controlled personal assistant"* designed for the Linux platform
 It is a tool that provides a platform to execute and control some basic tasks on the Linux platform, entirely through voice input.
@@ -6,7 +19,7 @@ It is a tool that provides a platform to execute and control some basic tasks on
 Source code used in the software can be 
 obtained with this URL:<https://gitlab.com/prateek_vij/team12cs243>
 
-## Requirements
+## II. Requirements
 The tool is developed in Python and uses libraries developed in it. A list of dependencies are mentioned in Dependencies.txt file.
 
 **Operating System :** Ubuntu 14.04
@@ -28,7 +41,7 @@ List of such applications are as follows:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other applications will be added as support for them would be made available
 
-## Features
+## III. Features
 The user can access and control multiple applications and features simply through voice input. The tool can take input through microphone in natural language and understand it (only upto certain extent) to perform the expected function. The features include:
 
 1. **operating a Music/Movie player** and navigate through the Music/Movie Library using voice commands such as
@@ -39,6 +52,6 @@ access tabs, close browser, scroll and search page, zooming, bookmark, back and 
 copy and move file, move back to previous directory, create new directory, open directory, open file, delete files and directories, search current directory.
 4. **access functionalities** that are generally executable only through the terminal such as update system, etc.
 
-## License
+## IV. License
 
 This project shall be released under GNU GPL v3.
