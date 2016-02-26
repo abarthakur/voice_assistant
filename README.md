@@ -65,8 +65,8 @@ A detailed list of specific functionalities shall be included soon after impleme
 
 ##V. Install
 To install the package, run 
-```python setup.py install
-```
+"python setup.py install"
+
 in the package directory.
 Add sudo before the command if needed. The file setup.py is yet to be added.
 
