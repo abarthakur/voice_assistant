@@ -28,3 +28,33 @@ def minimize(): # Minimise the Firefox Window
 	time.sleep(.1)
 	kboard.tap_key(kboard.down_key)
 	kboard.tap_key(kboard.enter_key)
+
+def new_tab(): # Open a New Tab
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.tap_key('t')
+	kboard.release_key(kboard.control_l_key)
+ 
+def close_tab(): # Close the current Tab
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.tap_key(kboard.function_keys[4])
+	kboard.release_key(kboard.control_l_key)
+
+def next_tab(): # Navigate to tab on the right
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.tap_key(kboard.tab_key)
+	kboard.release_key(kboard.control_l_key)
+
+def previous_tab(): # Navigate to tab on left
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.press_key(kboard.shift_key)
+	kboard.tap_key(kboard.tab_key)
+	kboard.release_key(kboard.shift_key)
+	kboard.release_key(kboard.control_l_key)
