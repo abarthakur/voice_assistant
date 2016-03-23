@@ -93,3 +93,30 @@ def zoom_out(): # Zoom out the current tab
 	kboard.press_key(kboard.control_l_key)
 	kboard.tap_key('-')
 	kboard.release_key(kboard.control_l_key)
+
+
+def forward():
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.alt_l_key)
+	kboard.tap_key(kboard.right_key)
+	kboard.release_key(kboard.alt_l_key)
+
+def back():
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.alt_l_key)
+	kboard.tap_key(kboard.left_key)
+	kboard.release_key(kboard.alt_l_key)
+
+def refresh():
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.tap_key(kboard.function_keys[5])
+
+def reload():
+	os.system('wmctrl -R "Mozilla Firefox"')
+	kboard = PyKeyboard()
+	kboard.press_key(kboard.control_l_key)
+	kboard.tap_key(kboard.function_keys[5])
+	kboard.release_key(kboard.control_l_key)
