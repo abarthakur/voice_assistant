@@ -1,0 +1,136 @@
+Start.
+Stop.
+Stop audio messages.
+Play Boulevard of Broken Dreams.
+Play Boulevard of Broken Dreams by Greenday.
+Play the song Boulevard of Broken Dreams.
+Play Greenday's Boulevard of Broken Dreams.
+Play Boulevard of Broken Dreams from the album American Idiot by Greenday.
+Play Boulevard of Broken Dreams from American Idiot.
+Play Boulevard of Broken Dreams from the album American Idiot.
+Play a song from the album American Idiot.
+Play any song from the album American Idiot.
+Play a song from American Idiot.
+Play any song from the album American Idiot by Greenday.
+Play any Greenday song.
+Play any song by Greenday.
+I want to listen to Boulevard of Broken Dreams.
+Play me Boulevard of Broken Dreams.
+Add all of Greenday's song to the playlist.
+What are the songs by Greenday?
+Pause this song.
+Stop this song.
+Pause.
+Stop.
+Put it on shuffle.
+Shuffle.
+Fast forward by 3s.
+Rewind by 3s.
+Play me the next song.
+Play me the previous song.
+Play me any song.
+I want to listen to a song? Which song? Any song.
+Increase the volume.
+Play the song faster.
+Play it even faster.
+Open a new tab.
+delete the file.
+move file to the directory.
+open this diretory.
+open the folder.
+create a new folder
+create a new file
+make a new directory
+delete all files from this folder
+go back 
+go back to the previous directory
+search for the file
+search the folder
+copy this folder
+copy this and paste this in the folder
+cut this folder
+open the browser
+search the web for 
+search on the internet
+search this term on a new tab
+open the website dot com
+save this page
+save the current page
+bookmark this page 
+i want to see my search history
+show history
+google this
+scroll down
+scroll up
+close the browser
+start mozilla
+start firefox
+search on firefox
+maximise the browser
+minimise the browser
+minimise firefox
+close the current tab
+close this tab
+go back
+next tab
+show me the previous tab
+show me the next tab
+search this page for
+can you find the word
+search the page for the word 
+reload this page
+refresh the page
+print this page
+save the page
+delete the search history
+add this page to bookmark
+open the bookmark
+zoom the page
+show the bookmarks 
+navigate to the last page
+navigate to the previous tab
+play a song please
+open rhythmbox and play the song 
+increase the volume
+pause the song
+stop the song
+close rhythmbox
+put down the volume please
+change the song
+Play the next song.
+exit rhythmbox
+bring rhythmbox to the front
+play the song in the background
+play some music 
+i want to listen some music
+play some rock please
+let the drum rolls
+time for some music
+put down the volume please 
+play me any random song
+restart this song
+play the last song again
+shut the music off
+silence please 
+silence for a while
+quite quite
+update the system
+upgrade the computer 
+shut down the pc
+shut the computer off
+shut the pc off
+reboot the pc
+restart 
+restart the computer
+open the application
+open calculator
+open powerpoint 
+open okular
+open submime text
+open libre draw
+open libre presentation
+lock the screen
+lock the pc
+logout
+log off
+shutdown
