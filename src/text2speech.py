@@ -2,10 +2,9 @@
 #Code snippet came along as sample code with the library
 import pyttsx
 
-txt=raw_input("Enter Something you want me to speak: ")
-
-engine = pyttsx.init()
-rate = engine.getProperty('rate')
-engine.setProperty('rate', rate-90)
-engine.say(txt)
-engine.runAndWait()
+def speak(txt):
+	engine = pyttsx.init()
+	rate = engine.getProperty('rate')
+	engine.setProperty('rate', rate-50)
+	engine.say(txt)
+	engine.runAndWait()
