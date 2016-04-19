@@ -45,3 +45,23 @@ def Error_msg(msg_in_head,msg_in_body):
 	ans= tkMessageBox.showerror(msg_in_head,msg_in_body)
 	#this will return ok when ok is pressed
 	return ans
+def close_window():
+	root.destroy()
+
+def button_command():
+	inpt=entry.get()
+	print inpt
+	close_window()
+	return inpt
+	# window.destroy()
+	# return str(inpt)
+
+def Take_input(msg_in_head,msg_in_body):
+	root.wm_title(msg_in_head)
+	entry.pack(side=LEFT)
+	button = guiwindow.Button( text="Get", command=button_command)
+	button.pack()
+	guiwindow.mainloop()
+
+
+#print Take_input("Window")
