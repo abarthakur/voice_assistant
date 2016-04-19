@@ -25,3 +25,23 @@ def Ask_retry_or_cancel(msg_in_head,msg_in_body):
   	root.withdraw()
   	#this will return true if ans is yes
  	return ans
+ #this will pop up wrning msgbox
+def Warning_msg(msg_in_head,msg_in_body):
+	root.withdraw()
+	ans= tkMessageBox.showwarning(msg_in_head,msg_in_body)
+	#this will return ok when ok is pressed
+	return ans
+
+#this will pop up info msgbox
+def Info_msg(msg_in_head,msg_in_body):
+	root.withdraw()
+	ans= tkMessageBox.showinfo(msg_in_head,msg_in_body)
+	#this will return ok when ok is pressed
+	return ans
+
+#this will pop us error msg box
+def Error_msg(msg_in_head,msg_in_body):
+	root.withdraw()
+	ans= tkMessageBox.showerror(msg_in_head,msg_in_body)
+	#this will return ok when ok is pressed
+	return ans
