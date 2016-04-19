@@ -8,7 +8,7 @@ def extract_attr(word_subtree):
 	if word_subtree.label()[0:2]=="JJ" :
 		for child in par:
 			if(child.label()=="RB"):
-				attrs.append(("RB",child[0]))
+				attrs.append(("RB"," ".join(child.leaves())))
 	elif word_subtree.label()[0:2]=="NN":
 		for child in par :
 			if child.label() in ["DT","PRP$","POS","JJ","CD","ADJP","QP","NP"] :
@@ -22,11 +22,11 @@ def extract_attr(word_subtree):
 	if word_subtree.label()[0:2] in ["NN","JJ"]:
 		for uncle in grandpar:
 			if uncle.label() == "PP":
-				attrs.append("PP"," ".join(uncle.leaves()))
+				attrs.append(("PP"," ".join(uncle.leaves())))
 	elif word_subtree.label()[0:2] =="VB" :
 		for uncle in grandpar:
 			if uncle.label()[0:2]=="VB":
-				attrs.append("VB",uncle[0])
+				attrs.append(("VB"," ".join(child.leaves())))
 	return attrs
 
 
