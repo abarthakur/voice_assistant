@@ -1,30 +1,68 @@
 from nltk.parse import stanford
 
+def extract_attr(word_subtree):
+	if word_subtree==None :
+		return []
+	par=word_subtree.parent
+	attrs=[]
+	if word_subtree.label()[0:2]=="JJ" :
+		for child in par:
+			if(child.label()=="RB"):
+				attrs.append(("RB",child[0]))
+	elif word_subtree.label()[0:2]=="NN":
+		for child in par :
+			if child.label() in ["DT","PRP$","POS","JJ","CD","ADJP","QP","NP"] :
+				attrs.append((child.label()," ".join(child.leaves())))
+	elif word_subtree.label()[0:2]=="VB":
+		for child in par:
+			if(child.label()=="ADVP"):
+				attrs.append(("ADVP"," ".join(child.leaves())))
 
-def extract_obj(vp_subtree) :
+	grandpar=par.parent
+	if word_subtree.label()[0:2] in ["NN","JJ"]:
+		for uncle in grandpar:
+			if uncle.label() == "PP":
+				attrs.append("PP"," ".join(uncle.leaves()))
+	elif word_subtree.label()[0:2] =="VB" :
+		for uncle in grandpar:
+			if uncle.label()[0:2]=="VB":
+				attrs.append("VB",uncle[0])
+	return attrs
+
+
+def extract_obj(verb_subtree) :
 	obj="noobj"
-	par = vp_subtree.parent
+	objtree=None
+	if (verb_subtree==None):
+		return (obj,objtree)
+		
+	par = verb_subtree.parent
 	#print par
 	for child in par :
 		if(child.label()=="NP" or child.label()=="PP") :
 			for x in child :
+				x.parent=child
 				#print x[0]		
 				if (x.label()[0:2]=="NN"):
 					# print x.label()
 					obj = x[0]
+					objtree=x
 					break
 		elif (child.label()=="ADJP"):
 			for x in child :
+				x.parent=child
 				if (x.label()[0:1]=="JJ"):
 					obj = x[0]
+					objtree=x
 
-	return obj
+	return (obj,objtree)
 
 
 def extract_pred(vp_subtree):
 	#the deepest verb is the predicate
 	#do BFS
 	verb="none"
+	verb_tree=None
 	queue= [vp_subtree]
 	for subtree in queue:
 
@@ -64,7 +102,7 @@ def verify_coms():
 		for child in s:
 			if (child.label()=="VP"):
 				(verb,tree)=extract_pred(child)
-				obj= extract_obj(tree)
+				(obj,objtree)= extract_obj(tree)
 		verb_file.write(verb +"  " +obj +"\n"+ sent+"\n")
 
 
@@ -74,7 +112,7 @@ p= stanford.StanfordParser(model_path="edu/stanford/nlp/models/lexparser/english
 								path_to_jar="/home/aneesh/git_projects/team12cs243/stanford-parser.jar",
 								path_to_models_jar="/home/aneesh/git_projects/team12cs243/stanford-parser-3.5.2-models.jar"
 								)
-sent = "open libre writer application"
+sent = "play faster"
 iterator=p.raw_parse(sent)
 root=iterator.next(	)
 #print y.leaves()
@@ -84,7 +122,10 @@ s=root[0]
 # s.pretty_print()
 for child in s:
 	if (child.label()=="VP"):
-		 (verb,tree) = extract_pred(child)
-		 obj=extract_obj(tree)
-		 print verb
-		 print obj
+		child.parent=s
+		(verb,tree) = extract_pred(child)
+		(obj,otree)=extract_obj(tree)
+		print verb
+		print extract_attr(tree)
+		print obj
+		print extract_attr(otree)
