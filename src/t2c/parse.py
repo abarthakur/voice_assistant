@@ -35,7 +35,7 @@ def extract_obj(verb_subtree) :
 	objtree=None
 	if (verb_subtree==None):
 		return (obj,objtree)
-		
+
 	par = verb_subtree.parent
 	#print par
 	for child in par :
@@ -96,36 +96,40 @@ def verify_coms():
 		root.pretty_print()
 		s=root[0]
 		# s.pretty_print()
-		
 		verb=""
 		obj=""
+		v_attr=[]
+		o_attr=[]
 		for child in s:
 			if (child.label()=="VP"):
+				child.parent=s
 				(verb,tree)=extract_pred(child)
+				v_attr= extract_attr(tree)
 				(obj,objtree)= extract_obj(tree)
-		verb_file.write(verb +"  " +obj +"\n"+ sent+"\n")
+				o_attr=extract_attr(objtree)
+		verb_file.write("verb="+verb+",v_attr="+str(v_attr)+",obj="+obj+",o_attr"+str(o_attr)+"\n"+ sent+"\n")
 
 
-#verify_coms()
+verify_coms()
 
-p= stanford.StanfordParser(model_path="edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz", 
-								path_to_jar="/home/aneesh/git_projects/team12cs243/stanford-parser.jar",
-								path_to_models_jar="/home/aneesh/git_projects/team12cs243/stanford-parser-3.5.2-models.jar"
-								)
-sent = "play faster"
-iterator=p.raw_parse(sent)
-root=iterator.next(	)
-#print y.leaves()
-# tree_file.write(sent +"\n" +root.pretty_print() +"\n\n\n")
-root.pretty_print()
-s=root[0]
-# s.pretty_print()
-for child in s:
-	if (child.label()=="VP"):
-		child.parent=s
-		(verb,tree) = extract_pred(child)
-		(obj,otree)=extract_obj(tree)
-		print verb
-		print extract_attr(tree)
-		print obj
-		print extract_attr(otree)
+# p= stanford.StanfordParser(model_path="edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz", 
+# 								path_to_jar="/home/aneesh/git_projects/team12cs243/stanford-parser.jar",
+# 								path_to_models_jar="/home/aneesh/git_projects/team12cs243/stanford-parser-3.5.2-models.jar"
+# 								)
+# sent = "play faster"
+# iterator=p.raw_parse(sent)
+# root=iterator.next(	)
+# #print y.leaves()
+# # tree_file.write(sent +"\n" +root.pretty_print() +"\n\n\n")
+# root.pretty_print()
+# s=root[0]
+# # s.pretty_print()
+# for child in s:
+# 	if (child.label()=="VP"):
+# 		child.parent=s
+# 		(verb,tree) = extract_pred(child)
+# 		(obj,otree)=extract_obj(tree)
+# 		print verb
+# 		print extract_attr(tree)
+# 		print obj
+# 		print extract_attr(otree)
