@@ -47,14 +47,17 @@ class Listener(threading.Thread):
 		except gsr.RequestError as e:
 			print("Uh oh! Couldn't request results from Google Speech Recognition service; {0}".format(e))
 
+	def recalibrate(self):
+		print "Silence for 5 seconds"
+		with self.mic as source: self.recognizer.adjust_for_ambient_noise(source=source,duration=5)
+		print "Ok, good to go!"
+
 
 	def test(self):
 		# handler=self.suppress_ALSA_warnings()
 		# r = gsr.Recognizer()
 		# m = gsr.Microphone()
-		print "Silence for 5 seconds"
-		with self.mic as source: self.recognizer.adjust_for_ambient_noise(source=source,duration=5)
-		print "Ok, good to go!"
+		self.recalibrate()
 		i=0
 		while(i<5):
 			try:
@@ -64,7 +67,7 @@ class Listener(threading.Thread):
 				pass
 
 # Create new threads
-# thread1 = Listener(1, "Thread-1")
-# # Start new Threads
-# thread1.start()
-# print "Exiting Main Thread"
+thread1 = Listener(1, "Thread-1")
+# Start new Threads
+thread1.start()
+print "Exiting Main Thread"
