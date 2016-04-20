@@ -3,16 +3,31 @@ import os
 from ctypes import *
 
 
-ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
+# ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
+# def py_error_handler(filename, line, function, err, fmt):
+#   pass
+#   #print filename,line,function,err,fmt
+
+# c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
+# asound = cdll.LoadLibrary('libasound.so')
+# # Set error handler
+# asound.snd_lib_error_set_handler(c_error_handler)
+
+
+
+def suppress_ALSA_warnings():
+
+	ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
+	c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
+	asound = cdll.LoadLibrary('libasound.so')
+	asound.snd_lib_error_set_handler(c_error_handler)
+	#asound.snd_lib_error_set_handler(None)
+	return c_error_handler
+	
 def py_error_handler(filename, line, function, err, fmt):
-  pass
-  #print filename,line,function,err,fmt
-
-c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
-asound = cdll.LoadLibrary('libasound.so')
-# Set error handler
-asound.snd_lib_error_set_handler(c_error_handler)
-
+	pass
+#important to keep the handler instance alive or else we hit a segmentation fault
+handler=suppress_ALSA_warnings()
 r = gsr.Recognizer()
 m = gsr.Microphone()
 print "Silence for 5 seconds"
@@ -30,6 +45,7 @@ def speech2text():
 	except gsr.RequestError as e:
 		print("Uh oh! Couldn't request results from Google Speech Recognition service; {0}".format(e))
 
+# print "abcd"
 while(True):
 	try:
 		print speech2text()
