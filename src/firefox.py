@@ -50,7 +50,9 @@ def scroll_up(): # Scroll Up
 	
 def search_page(string): # Search for a particular term in the page
 	os.system('xdotool search --name "Mozilla Firefox" windowactivate')
-	os.system('xdotool key a')
+	os.system('xdotool key Ctrl+f')
+	time.sleep(0.1)
+	os.system('xdotool type '+ string)
 
 def zoom_in(): # Zoom in the current tab
 	os.system('xdotool search --name "Mozilla Firefox" windowactivate')
@@ -104,3 +106,4 @@ def save_page(): # Prompt the user to save window
 	os.system('xdotool search --name "Mozilla Firefox" windowactivate')
 	os.system('xdotool key ctrl+s')
 	
+
