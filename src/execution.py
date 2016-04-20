@@ -5,6 +5,7 @@ import process
 import text2speech
 import os
 import subprocess
+import gui
 
 
 
@@ -34,7 +35,6 @@ def active(window):
 		return False
 
 
-
 running={}
 running['firefox'] = active("Mozilla Firefox")
 running['rhythmbox'] = active("Rhythmbox")
@@ -42,7 +42,7 @@ running['totem'] = active("Totem")
  	 	
 
 
-task={"module":"process","func":"foreground","param":['Mozilla Firefox']}
+task={"module":"terminal","func":"update","param":[]}
 
 
 
@@ -64,7 +64,38 @@ def sanity_check_firefox(func,param,msg):
 			else:
 				return True
 
-	
+
+
+def sanity_check_process(func,param,msg):
+	if not param:
+		return False
+	window=param[0]
+	if not active(window):
+		msg=param[0]+" is not running"
+		return False
+
+	if func=="foreground" and foreground(window):
+		msg=window+" is already in front"
+		return False
+	return True
+
+
+def sanity_check_terminal(func,param,msg):
+	if func=="open":
+		if not param:
+			return False
+		else:
+			return True
+	else:
+		confirm=gui.Ask_yes_or_no("Request for confirmation","Are you sure you want to "+func+" your system ?")
+		if not confirm:
+			return False
+		# password=gui.Take_input("Authentication Needed","Please enter your password")
+		# print str(password)+"hello"
+		return True
+
+
+
 
 msg=''
 allow=False
@@ -76,6 +107,8 @@ parameter=task["param"]
 sanity_function="sanity_check_"+module
 sanity_check=globals()[sanity_function]
 allow=sanity_check(function,parameter,msg)
+
+
 
 
 
