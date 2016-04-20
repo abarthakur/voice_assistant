@@ -11,15 +11,10 @@ import inspect
 import process
 
 commands={}
-modules=["firefox","process","music","movie","terminal"]
 
 def import_function(name):
 	fns=[fn[0] for fn in inspect.getmembers(__import__(name),inspect.isfunction)]
 	return fns
-
-for module in modules:
-	commands[module]=import_function(module)
-
 
 
 def foreground(window):
@@ -37,16 +32,6 @@ def active(window):
 		return False
 
 
-running={}
-running['firefox'] = active("Mozilla Firefox")
-running['rhythmbox'] = active("Rhythmbox")
-running['totem'] = active("Totem") 
- 	 	
-
-
-task={"module":"movie","func":"pause","param":[]}
-
-
 
 def validate(module,func):
 	if func in commands[module]:
@@ -56,13 +41,13 @@ def validate(module,func):
 
 def sanity_check_firefox(func,param,msg):
 	if func=='start_window':
-	 	if running["firefox"]:
+	 	if active("firefox"):
 			msg="Firefox is already running"
 			return False
 		else:
 			return True
 	else:
-		if not running["firefox"]:
+		if not active("firefox"):
 			return False
 		else:
 			if func=="search_page" and not param:
@@ -112,25 +97,33 @@ def sanity_check_movie(func,param,msg):
 		return False
 	return True
 
-msg=''
-allow=False
-module=task["module"]
-function=task["func"]
-parameter=task["param"]
+
+def exec_cmd(task):
+	# task={"module":"movie","func":"pause","param":[]}
+	modules=["firefox","process","music","movie","terminal"]
+	for module in modules:
+		commands[module]=import_function(module)
+
+	msg=''
+	allow=False
+	module=task["module"]
+	function=task["func"]
+	parameter=task["param"]
 
 
-valid=validate(module,function)
-if valid:
-	sanity_function="sanity_check_"+module
-	sanity_check=globals()[sanity_function]
-	allow=sanity_check(function,parameter,msg)
+	valid=validate(module,function)
+	if valid:
+		sanity_function="sanity_check_"+module
+		sanity_check=globals()[sanity_function]
+		allow=sanity_check(function,parameter,msg)
+	else:
+		print "Utility not available"
 
-if not allow or not valid:
-	if msg:
-		print msg
-else:
-	execute=getattr(__import__(task["module"]),task["func"])
-	execute(*parameter)
- 		
- 		
+	if not allow or not valid:
+		if msg:
+			print msg
+	else:
+		execute=getattr(__import__(task["module"]),task["func"])
+		execute(*parameter)
+ 			
 
