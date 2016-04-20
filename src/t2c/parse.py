@@ -6,6 +6,8 @@ class Parser(object):
 	MODEL_PATH="edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz"
 	PATH_TO_JAR="/home/aneesh/git_projects/team12cs243/stanford-parser.jar"
 	PATH_TO_MODELS_JAR="/home/aneesh/git_projects/team12cs243/stanford-parser-3.5.2-models.jar"
+	SAMPLE_COMMANDS_PATH="all_commands.txt"
+	SAMPLES_PARSE_OUTPUT_PATH="verify.txt"
 
 	def __init__(self):
 		super(Parser, self).__init__()
@@ -23,6 +25,8 @@ class Parser(object):
 		s=root[0]
 		s.pretty_print()
 		##multiple VPs
+		verb=""
+		obj=""
 		for child in s:
 			if (child.label()=="VP"):
 				child.parent=s
@@ -118,40 +122,45 @@ class Parser(object):
 
 
 	def verify_coms(self):
-		p= stanford.StanfordParser(model_path="edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz", 
-									path_to_jar="/home/aneesh/git_projects/team12cs243/stanford-parser.jar",
-									path_to_models_jar="/home/aneesh/git_projects/team12cs243/stanford-parser-3.5.2-models.jar"
-									)
+		# p= stanford.StanfordParser(model_path="edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz", 
+		# 							path_to_jar="/home/aneesh/git_projects/team12cs243/stanford-parser.jar",
+		# 							path_to_models_jar="/home/aneesh/git_projects/team12cs243/stanford-parser-3.5.2-models.jar"
+		# 							)
 
 		#sent = "A rare black squirrel has become a regular visitor in our suburban garden"
 		# sent = "I want to listen to about time"
-		com_file = open("all_commands.txt","r")
-		verb_file = open("verbs.txt","w")
+		com_file = open(self.SAMPLE_COMMANDS_PATH,"r")
+		out_file = open(self.SAMPLES_PARSE_OUTPUT_PATH,"w")
 		sents = com_file.readlines()
 		for sent in sents :
-			iterator=p.raw_parse(sent)
-			root=iterator.next(	)
-			#print y.leaves()
-			# tree_file.write(sent +"\n" +root.pretty_print() +"\n\n\n")
-			root.pretty_print()
-			s=root[0]
-			# s.pretty_print()
-			verb=""
-			obj=""
-			v_attr=[]
-			o_attr=[]
-			for child in s:
-				if (child.label()=="VP"):
-					child.parent=s
-					(verb,tree)=extract_pred(child)
-					v_attr= extract_attr(tree)
-					(obj,objtree)= extract_obj(tree)
-					o_attr=extract_attr(objtree)
-			verb_file.write("verb="+verb+",v_attr="+str(v_attr)+",obj="+obj+",o_attr"+str(o_attr)+"\n"+ sent+"\n")
+			# iterator=p.raw_parse(sent)
+			# root=iterator.next(	)
+			# #print y.leaves()
+			# # tree_file.write(sent +"\n" +root.pretty_print() +"\n\n\n")
+			# root.pretty_print()
+			# s=root[0]
+			# # s.pretty_print()
+			# verb=""
+			# obj=""
+			# v_attr=[]
+			# o_attr=[]
+			# for child in s:
+			# 	if (child.label()=="VP"):
+			# 		child.parent=s
+			# 		(verb,tree)=extract_pred(child)
+			# 		v_attr= extract_attr(tree)
+			# 		(obj,objtree)= extract_obj(tree)
+			# 		o_attr=extract_attr(objtree)
+			results=self.parse_sent(sent)
+			verb=results['verb']
+			obj=results['object']
+			out_file.write("verb : "+verb + "  obj : "+obj+"\n"+sent+"\n")
+			#out_file.write("verb="+verb+",v_attr="+str(v_attr)+",obj="+obj+",o_attr"+str(o_attr)+"\n"+ sent+"\n")
 
 
 par=Parser()
-print par.parse_sent("Play a song")
+par.verify_coms()
+# print par.parse_sent("Play a song")
 
 # verify_coms()
 
