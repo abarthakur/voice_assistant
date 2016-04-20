@@ -1,6 +1,5 @@
 import os
 from os import system
-import re
 
 
 def generate(features):
