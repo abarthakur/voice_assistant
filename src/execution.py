@@ -1,24 +1,26 @@
 import firefox
-# import music
 import terminal
 import process
 import text2speech
 import os
 import subprocess
 import gui
-
-
+import music
+import movie
+import inspect
+import process
 
 commands={}
-commands["process"]=["maximize","minimize","foreground","close"]
-commands["firefox"]=["start_window","search","close_window","minimize","maximize",
-					"new_tab","close_tab","previous_tab","next_tab",
-					"scroll_down","scroll_up","zoom_in","zoom_out","search_page",
-					"forward","back","refresh","reload",
-					"bookmark","open_bookmark","history","delete_history","print_page","save_page"
-					]
-commands["music"]=["play","pause","next","previous","restart","vol_up","vol_down","quit","hide"]
-commands["terminal"]=["update","upgrade","shutdown","restart","lock","logout","open"]
+modules=["firefox","process","music","movie","terminal"]
+
+def import_function(name):
+	fns=[fn[0] for fn in inspect.getmembers(__import__(name),inspect.isfunction)]
+	return fns
+
+for module in modules:
+	commands[module]=import_function(module)
+
+
 
 def foreground(window):
 	pid=subprocess.Popen(['xdotool','getactivewindow','getwindowname'],stdout=subprocess.PIPE).stdout.read()
@@ -42,13 +44,17 @@ running['totem'] = active("Totem")
  	 	
 
 
-task={"module":"terminal","func":"update","param":[]}
+task={"module":"movie","func":"pause","param":[]}
 
 
+
+def validate(module,func):
+	if func in commands[module]:
+		return True
+	else:
+		return False
 
 def sanity_check_firefox(func,param,msg):
-	if func not in commands["firefox"]:
-		return False
 	if func=='start_window':
 	 	if running["firefox"]:
 			msg="Firefox is already running"
@@ -94,8 +100,17 @@ def sanity_check_terminal(func,param,msg):
 		# print str(password)+"hello"
 		return True
 
+def sanity_check_music(func,param,msg):
+	if not active("Rhythmbox"):
+		if func != "play":
+			msg="Rhythmbox is not running. start rhythmbox first"
+			return False
+	return True
 
-
+def sanity_check_movie(func,param,msg):
+	if not active("Videos"):
+		return False
+	return True
 
 msg=''
 allow=False
@@ -104,15 +119,13 @@ function=task["func"]
 parameter=task["param"]
 
 
-sanity_function="sanity_check_"+module
-sanity_check=globals()[sanity_function]
-allow=sanity_check(function,parameter,msg)
+valid=validate(module,function)
+if valid:
+	sanity_function="sanity_check_"+module
+	sanity_check=globals()[sanity_function]
+	allow=sanity_check(function,parameter,msg)
 
-
-
-
-
-if not allow:
+if not allow or not valid:
 	if msg:
 		print msg
 else:
