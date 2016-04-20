@@ -4,11 +4,13 @@ import os
 
 r = gsr.Recognizer()
 m = gsr.Microphone()
+print "Silence for 5 seconds"
+with m as source: r.adjust_for_ambient_noise(source=source,duration=5)
+print "Ok, good to go!"
 
 def speech2text():
 	try: 
 		print "Say Something ..."
-		with m as source: r.adjust_for_ambient_noise(source)
 		with m as source: audio = r.listen(source)
 		value = r.recognize_google(audio)
 		return format(value).encode("utf-8")
@@ -16,3 +18,9 @@ def speech2text():
 		print("Oops! Didn't catch that")
 	except gsr.RequestError as e:
 		print("Uh oh! Couldn't request results from Google Speech Recognition service; {0}".format(e))
+
+while(True):
+	try:
+		print speech2text()
+	except gsr.WaitTimeoutError:
+		pass
