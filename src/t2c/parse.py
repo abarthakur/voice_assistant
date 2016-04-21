@@ -130,6 +130,6 @@ class Parser(object):
 			#out_file.write("verb="+verb+",v_attr="+str(v_attr)+",obj="+obj+",o_attr"+str(o_attr)+"\n"+ sent+"\n")
 
 
-par=Parser()
-par.verify_coms()
+# par=Parser()
+# par.verify_coms()
 # print par.parse_sent("Play a song")
