@@ -100,52 +100,52 @@ class Listener(threading.Thread):
 			except gsr.WaitTimeoutError:
 				pass
 
-queueLock = threading.Lock()
-workQueue = Queue.Queue(10)
-# Create new threads
-kill=threading.Event()
-kill.clear()
-listen=threading.Event()
-listen.set()
-cal=threading.Event()
-cal.clear()
-thread1 = Listener(1, "Thread-1",queueLock,workQueue,kill,listen,cal)
-# Start new Threads
-thread1.start()
-out_file = open("out.txt","a")
-# while(thread1.is_alive()):
-# 	try:
-# 		text = workQueue.get(True)
-# 		out_file.write(text+"\n")
-# 		print "From main thread:"+text
-# 	except Queue.Empty:
-# 		continue
-x=time.time()
-y=time.time()	
-flag=1
-flag2=1
-flag3=1
-while(y-x<=120 and thread1.is_alive()):#thread1.is_alive()):
-	y=time.time()	
-	#print y,x
+# queueLock = threading.Lock()
+# workQueue = Queue.Queue(10)
+# # Create new threads
+# kill=threading.Event()
+# kill.clear()
+# listen=threading.Event()
+# listen.set()
+# cal=threading.Event()
+# cal.clear()
+# thread1 = Listener(1, "Thread-1",queueLock,workQueue,kill,listen,cal)
+# # Start new Threads
+# thread1.start()
+# out_file = open("out.txt","a")
+# # while(thread1.is_alive()):
+# # 	try:
+# # 		text = workQueue.get(True)
+# # 		out_file.write(text+"\n")
+# # 		print "From main thread:"+text
+# # 	except Queue.Empty:
+# # 		continue
+# x=time.time()
+# y=time.time()	
+# flag=1
+# flag2=1
+# flag3=1
+# while(y-x<=120 and thread1.is_alive()):#thread1.is_alive()):
+# 	y=time.time()	
+# 	#print y,x
 	
-	if(y-x>30 and y-x<60 and flag==1):
-		print "From main thread: 1 min up! stop listening!"
-		listen.clear()
-		flag=0
-	if (y-x>60 and y-x<90 and flag2==1):
-		print "From main thread: listen again"
-		listen.set()
-		flag2=0
-	if(y-x>90 and flag3==1):
-		print "From main thread: die permanently"
-		kill.set()
-		flag3=0
-	try:
-		text = workQueue.get(True,3)
-		if text:
-			out_file.write(text+"\n")
-			print "\n\nFrom main thread:"+text+"\n\n"
-	except :#Queue.Empty:
-		continue
-print "Exiting Main Thread"
+# 	if(y-x>30 and y-x<60 and flag==1):
+# 		print "From main thread: 1 min up! stop listening!"
+# 		listen.clear()
+# 		flag=0
+# 	if (y-x>60 and y-x<90 and flag2==1):
+# 		print "From main thread: listen again"
+# 		listen.set()
+# 		flag2=0
+# 	if(y-x>90 and flag3==1):
+# 		print "From main thread: die permanently"
+# 		kill.set()
+# 		flag3=0
+# 	try:
+# 		text = workQueue.get(True,3)
+# 		if text:
+# 			out_file.write(text+"\n")
+# 			print "\n\nFrom main thread:"+text+"\n\n"
+# 	except :#Queue.Empty:
+# 		continue
+# print "Exiting Main Thread"
