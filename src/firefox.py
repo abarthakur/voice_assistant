@@ -14,7 +14,7 @@ def close_window(): # Close the Firefox Window
 	os.system('xdotool search --name "Mozilla Firefox" windowkill')
 
 def maximize(): # Maximise the Firefox Window
-	os.system('xdotool search --name Mozilla windowactivate')
+	os.system('xdotool search --name "Mozilla Firefox" windowactivate')
 	cmd="xdotool key ctrl+super+Up"
 	os.system(cmd)
 
@@ -107,4 +107,3 @@ def save_page(): # Prompt the user to save window
 	os.system('xdotool key ctrl+s')
 	
 
-start_window()

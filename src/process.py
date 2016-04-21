@@ -1,23 +1,17 @@
 # Process Module (Untested)
 # Responsible for Managing ongoing procecsses and Applications
 import os 
-import pyKeyboard
 
 def maximize(window): # Maximise the window mentioned in the parameter window
-	os.system('wmctrl -R "'+window+'" ')
+	os.system('xdotool search --name "'+window+'" windowactivate')
+	cmd="xdotool key ctrl+super+Up"
+	os.system(cmd)
 
 def minimize(window): # Minimize the window mentioned in the parameter window
-	os.system('wmctrl -R "'+window+'"')
-	kboard = PyKeyboard()
-	kboard.press_key(kboard.alt_key)
-	kboard.tap_key(' ')
-	kboard.release_key(kboard.alt_key)
-	time.sleep(.1)
-	kboard.tap_key(kboard.down_key)
-	kboard.tap_key(kboard.enter_key)
+	os.system('xdotool search --name "'+window+'" windowminimize')
 
 def foreground(window): # Takes a window given as parameter to the front
-	os.system('wmctrl -R "'+window+'"')
+	os.system('xdotool search --name "'+window+'" windowactivate')
 
 def close(window): # Close the window  given as parameter
-	os.system('wmctrl -c "'+window+'"')
+	os.system('xdotool search --name "'+window+'" windowkill')
