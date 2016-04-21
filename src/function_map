@@ -1,0 +1,52 @@
+listen song music play
+play song music play
+start song music play
+pause song music pause
+stop song music pause
+volume song music vol_high
+next song music next
+post song music next
+previous song music next
+pre song music next
+restart song music restart
+replay song music restart
+hide song music hide
+end song music quit
+quit song music quit
+play movie movie play
+start movie movie play
+pause movie movie pause
+stop movie movie pause
+next movie movie next
+post movie movie next
+previous movie movie previous
+pre movie movie next
+volume movie movie vol_high
+forward movie movie forward
+backward movie movie backward
+fullscreen movie movie fullscreen
+screen movie movie fullscreen
+mute movie movie mute
+end movie movie quit
+quit movie movie quit
+show filepath file get_browser_path
+create directory file create_directory
+open file file open_file file
+delete file file delete inp
+remove file file delete inp
+search string file search string
+open folder file open_outer_directory
+cut file file move_item item destination
+copy file file copy_item item destination
+maximize window process maximize window
+minimize window process minimize window
+foreground window process foreground window
+close window process close window
+quit window process close window
+update system terminal update
+upgrade system terminal upgrade
+shutdown system terminal shutdown
+restart system terminal restart
+lock system terminal lock
+logout system terminal logout
+open app terminal open app
