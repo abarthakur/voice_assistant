@@ -1,13 +1,13 @@
-([A-Za-z]* )*print (this|the) (page|link|webpage)( [A-Za-z]*)*###firefox###print_page
+([A-Za-z]* )*print( this| the)? (page|link|webpage)( [A-Za-z]*)*###firefox###print_page
 ([A-Za-z]* )*save( this| the| ) (page|link|webpage)( [A-Za-z]*)*###firefox###save_page
-([A-Za-z]* )*delete (the |my )?(internet |web |browser |browsing |search |firefox |mozilla firefox |mozilla )history( [A-Za-z]*)*###firefox###delete_history
-([A-Za-z]* )*(open |show |display )(me )?(my |the )?(internet |web |browser |browsing |search |firefox |mozilla firefox |mozilla )history( [A-Za-z]*)*###firefox###history
+([A-Za-z]* )*delete (the |my )?(internet |web |browser |browsing |search |firefox |mozilla firefox |mozilla )?history( [A-Za-z]*)*###firefox###delete_history
+([A-Za-z]* )*(open |show |display )(me )?(my |the )?(internet |web |browser |browsing |search |firefox |mozilla firefox |mozilla )?history( [A-Za-z]*)*###firefox###history
 ([A-Za-z]* )*bookmark (the |this )?(page|link|webpage)( [A-Za-z]*)*|([A-Za-z]* )*mark (this |the )?(page |link |webpage )?as bookmark( [A-Za-z]*)*###firefox###bookmark
 ([A-Za-z]* )*(open |show |display )(all )?(me |the )?bookmarks?( [A-Za-z]*)*###firefox###open_bookmark
 ([A-Za-z]* )*reload (this |the )?(page|link|webpage)( [A-Za-z]*)*###firefox###reload
 ([A-Za-z]* )*refresh (this |the )?(page|link|webpage)( [A-Za-z]*)*###firefox###refresh
 ([A-Za-z]* )*go (back|back to the last page|back to the previous page|to the last page|to the previous page)( [A-Za-z]*)*###firefox###back
-([A-Za-z]* )*go (forward (to the next page)*|to the next page)( [A-Za-z]*)*###firefox###forward
+([A-Za-z]* )*go( forward)?( to the next page)?( [A-Za-z]*)*###firefox###forward
 ([A-Za-z]* )*zoom(?! out)( in)?( [A-Za-z]*)*###firefox###zoom_in
 ([A-Za-z]* )*zoom out( [A-Za-z]*)*###firefox###zoom_out
 ([A-Za-z]* )*(scroll down( the page)?|go down)( [A-Za-z]*)*###firefox###scroll_down

@@ -83,7 +83,9 @@ close browser firefox close_window
 close mozilla firefox close_window
 close firefox firefox close_window
 maximize firefox firefox maximize
+maximise firefox firefox maximize
 minimize firefox firefox minimize
+minimise firefox firefox minimize
 open tab firefox new_tab
 close tab firefox close_tab
 next tab firefox next_tab
@@ -103,3 +105,6 @@ reload page firefox reload
 add bookmark firefox bookmark
 open bookmark firefox open_bookmark
 show history firefox history
+delete history firefox delete_history
+print page firefox print_page
+
