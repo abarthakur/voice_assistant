@@ -73,5 +73,11 @@ class Control(threading.Thread):
 		# Start new Threads
 		# self.listenerThread.start()
 
-
+	def killListener(self):
+		self.kill_listener.set()
+		self.listenerThread=None
+	def stopListening(self):
+		self.stopListening.set()
+	def startListening(self):
+		self.listen.set()
 start_threads()
