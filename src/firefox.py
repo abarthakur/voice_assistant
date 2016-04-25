@@ -5,10 +5,10 @@ import os
 import time
 
 def start_window(): # Start Firefox
-	os.system('firefox')
+	os.system('nohup firefox </dev/null &>/dev/null &')
 
 def search(term): # Search a particular term on Default Search Engine
-	os.system('firefox -search '+term)
+	os.system('nohup firefox --search '+term+' </dev/null &>/dev/null &')
 
 def close_window(): # Close the Firefox Window
 	os.system('xdotool search --name "Mozilla Firefox" windowkill')
@@ -105,5 +105,3 @@ def print_page(): # Prompt the user to Print Window
 def save_page(): # Prompt the user to save window
 	os.system('xdotool search --name "Mozilla Firefox" windowactivate')
 	os.system('xdotool key ctrl+s')
-	
-
