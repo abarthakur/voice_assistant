@@ -1,0 +1,43 @@
+([A-Za-z]* )*print (this|the) (page|link|webpage)( [A-Za-z]*)*###firefox###print_page
+([A-Za-z]* )*save( this| the| ) (page|link|webpage)( [A-Za-z]*)*###firefox###save_page
+([A-Za-z]* )*delete (the |my )?(internet |web |browser |browsing |search |firefox |mozilla firefox |mozilla )history( [A-Za-z]*)*
+([A-Za-z]* )*(open |show |display )(me )?(my |the )?(internet |web |browser |browsing |search |firefox |mozilla firefox |mozilla )history( [A-Za-z]*)*
+([A-Za-z]* )*bookmark (the |this )?(page|link|webpage)( [A-Za-z]*)*|([A-Za-z]* )*mark (this |the )?(page |link |webpage )?as bookmark( [A-Za-z]*)*
+([A-Za-z]* )*(open |show |display )(all )?(me |the )?bookmarks?( [A-Za-z]*)*
+([A-Za-z]* )*reload (this |the )?(page|link|webpage)( [A-Za-z]*)*
+([A-Za-z]* )*refresh (this |the )?(page|link|webpage)( [A-Za-z]*)*
+([A-Za-z]* )*go (back|back to the last page|back to the previous page|to the last page|to the previous page)( [A-Za-z]*)*
+([A-Za-z]* )*go (forward (to the next page)*|to the next page)( [A-Za-z]*)*
+([A-Za-z]* )*zoom(?!out)( in)?( [A-Za-z]*)*
+([A-Za-z]* )*zoom out( [A-Za-z]*)*
+([A-Za-z]* )*(scroll down (the page)? |go down)( [A-Za-z]*)*
+([A-Za-z]* )*(scroll up (the page)? |go up)( [A-Za-z]*)*
+([A-Za-z]* )*open (the |a )?new tab	( [A-Za-z]*)*
+([A-Za-z]* )*close (the |this )?(current )?tab( [A-Za-z]*)*
+([A-Za-z]* )*(show (me )?|open )(the )?next tab( [A-Za-z]*)*
+([A-Za-z]* )*(show (me )?|open )(the )?(previous|last) tab( [A-Za-z]*)*
+([A-Za-z]* )*(minimise|minimize) (the |this )?(firefox|mozilla firefox|firefox|browser)( [A-Za-z]*)*
+([A-Za-z]* )*(maximise|maximize) (the |this )?(firefox|mozilla firefox|firefox|browser)( [A-Za-z]*)*
+([A-Za-z]* )*(open|start|launch) (the )?(browser|firefox|mozilla firefox|mozilla)( [A-Za-z]*)*
+([A-Za-z]* )*(close|stop) (the )?(browser|firefox|mozilla firefox|mozilla)( [A-Za-z]*)*
+([A-Za-z]* )*(search|google) (the)? ([A-Za-z]* )*(internet|web)( [A-Za-z]*)*
+([A-Za-z]* )*(previous|last) song( [A-Za-z]*)*
+([A-Za-z]* )*next song( [A-Za-z]*)*
+([A-Za-z]* )*hide (the)? (music player|rhythmbox)( [A-Za-z]*)*
+([A-Za-z]* )*pause (the )?(song)?( [A-Za-z]*)*
+([A-Za-z]* )*(start the song again|restart the song)( [A-Za-z]*)*
+write for play song
+([A-Za-z]* )*(close|quit|turn off) (the|this) (music player|rhythmbox|songs?)( [A-Za-z]*)*
+([A-Za-z]* )*lock (the |my )?(screen|pc|computer|system|session)( [A-Za-z]*)*
+([A-Za-z]* )*(logout|log out)( [A-Za-z]*)*
+([A-Za-z]* )*(shutdown|shut down) (the |my )?(pc|computer|system)( [A-Za-z]*)*
+([A-Za-z]* )*(restart|reboot) (the |my )?(pc|computer|system)( [A-Za-z]*)*
+([A-Za-z]* )*update (the |my )?(pc|computer|system)( [A-Za-z]*)*
+([A-Za-z]* )*upgrade (the |my )?(pc|computer|system)( [A-Za-z]*)*
+([A-Za-z]* )*( [A-Za-z]*)*
+([A-Za-z]* )*( [A-Za-z]*)*
+([A-Za-z]* )*( [A-Za-z]*)*
+([A-Za-z]* )*( [A-Za-z]*)*
+([A-Za-z]* )*( [A-Za-z]*)*
+([A-Za-z]* )*( [A-Za-z]*)*
+([A-Za-z]* )*( [A-Za-z]*)*
