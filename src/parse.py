@@ -20,6 +20,10 @@ class Parser(object):
 		iterator=self.stanpar.raw_parse(sent)
 		root=iterator.next()
 		s=root[0]
+		s.parent=None
+		sinv=False
+		# if(s.label()=="SINV"):
+		# 	sinv=True
 		s.pretty_print()
 		##multiple VPs
 		verb=""
@@ -30,7 +34,10 @@ class Parser(object):
 			if (child.label()=="VP"):
 				child.parent=s
 				(verb,vtree) = self.extract_pred(child)
-				(obj,otree)=self.extract_obj(vtree)
+				if sinv:
+					(obj,otree)=self.extract_obj(vtree.parent)
+				else:	
+					(obj,otree)=self.extract_obj(vtree)
 				break
 		v_attr=None
 		o_attr=None
@@ -50,7 +57,7 @@ class Parser(object):
 		
 		results['input']=sent
 		results['verb']=verb
-		results['object']=obj
+		results['object']=object
 		return results
 		# print verb
 		# print extract_attr(tree)
@@ -172,18 +179,19 @@ class Parser(object):
 				if(child.label()=="ADVP"):
 					#attrs.append(("ADVP"," ".join(child.leaves())))
 					attrs[child.label()]=child
-
+		# print par.label()
 		grandpar=par.parent
-		if word_subtree.label()[0:2] in ["NN","JJ"]:
-			for uncle in grandpar:
-				if uncle.label() == "PP":
-					# attrs.append(("PP"," ".join(uncle.leaves())))
-					attrs[uncle.label()]=uncle
-		elif word_subtree.label()[0:2] =="VB" :
-			for uncle in grandpar:
-				if uncle.label()[0:2]=="VB":
-					# attrs.append(("VB"," ".join(child.leaves())))
-					attrs[uncle.label()]=uncle
+		if grandpar:
+			if word_subtree.label()[0:2] in ["NN","JJ"]:
+				for uncle in grandpar:
+					if uncle.label() == "PP":
+						# attrs.append(("PP"," ".join(uncle.leaves())))
+						attrs[uncle.label()]=uncle
+			elif word_subtree.label()[0:2] =="VB" :
+				for uncle in grandpar:
+					if uncle.label()[0:2]=="VB":
+						# attrs.append(("VB"," ".join(child.leaves())))
+						attrs[uncle.label()]=uncle
 		return attrs
 
 
