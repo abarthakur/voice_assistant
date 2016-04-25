@@ -24,6 +24,8 @@ class Parser(object):
 		##multiple VPs
 		verb=""
 		obj=""
+		vtree=None
+		otree=None
 		for child in s:
 			if (child.label()=="VP"):
 				child.parent=s
@@ -39,7 +41,7 @@ class Parser(object):
 			results["v_attr"]=v_attr2
 		if otree:
 			o_attr=self.extract_attr(otree)
-			o_attr2=self.extract_attr(o_attr)
+			o_attr2=self.parse_attr(o_attr,False,True)
 			results["o_attr"]=o_attr2
 		# print verb
 		# print v_attr
@@ -83,12 +85,48 @@ class Parser(object):
 			return (obj,objtree)
 
 		par = verb_subtree.parent
+		(obj,objtree,s_trees)=self.find_obj(par)
+		if not objtree and len(s_trees)>0:	
+			for s in s_trees:
+				(obj,objtree,s_trees)=self.find_obj(s)
 		#print par
+		# found=False
+		# for child in par :
+		# 	if(child.label()=="NP" or child.label()=="PP") :
+		# 		for x in child :
+		# 			x.parent=child
+		# 			#print x[0]
+		# 			if (x.label() in ["S","SINV"]):		
+		# 				s_tree.append(x)
+		# 			if (x.label()[0:2]=="NN"):
+		# 				# print x.label()
+		# 				obj = x[0]
+		# 				objtree=x
+		# 				found=True
+		# 				break
+		# 	elif (child.label()=="ADJP"):
+		# 		for x in child :
+		# 			x.parent=child
+		# 			if (x.label()[0:1]=="JJ"):
+		# 				obj = x[0]
+		# 				objtree=x
+		# 				found=True
+
+		return (obj,objtree)
+
+	def find_obj(self,par):
+		s_trees=[]
+		obj="noobj"
+		objtree=None
 		for child in par :
+			
+			if (child.label() in ["S","SINV"]):		
+				s_trees.append(child)
+			
 			if(child.label()=="NP" or child.label()=="PP") :
 				for x in child :
 					x.parent=child
-					#print x[0]		
+					#print x[0]
 					if (x.label()[0:2]=="NN"):
 						# print x.label()
 						obj = x[0]
@@ -100,7 +138,10 @@ class Parser(object):
 					if (x.label()[0:1]=="JJ"):
 						obj = x[0]
 						objtree=x
-		return (obj,objtree)
+		
+		return obj,objtree,s_trees
+
+
 
 	def parse_attr(self,attrs,verb,object):
 		new_attrs={}
@@ -152,12 +193,15 @@ class Parser(object):
 		sents = com_file.readlines()
 		for sent in sents :
 			results=self.parse_sent(sent)
-			verb=results['verb']
-			obj=results['object']
-			out_file.write("verb : "+verb + "  obj : "+obj+"\n"+sent+"\n")
+			# verb=results['verb']
+			# obj=results['object']
+			# out_file.write("verb : "+verb + "  obj : "+obj+"\n"+sent+"\n")
+			out_file.write(str(results) + "\n"+sent+"\n")
 			#out_file.write("verb="+verb+",v_attr="+str(v_attr)+",obj="+obj+",o_attr"+str(o_attr)+"\n"+ sent+"\n")
+		com_file.close()
+		out_file.close()
 
 
-par=Parser()
-#par.verify_coms()
-print par.parse_sent("Play it faster")
+# par=Parser()
+# par.verify_coms()
+# print par.parse_sent("Play me the next song")
