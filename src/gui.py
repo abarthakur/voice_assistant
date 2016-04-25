@@ -70,7 +70,7 @@ class Gui:
 		root=guiwindow.Tk()
 		self.y=root
 		#root.withdraw()
-		entry = guiwindow.Entry()
+		entry = guiwindow.Entry(font = "Helvetica 16",bd =0, width= 50)
 		self.z=entry
 		root.wm_title(msg_in_head)
 		entry.pack(side=LEFT)
@@ -78,4 +78,16 @@ class Gui:
 		button.pack()
 		guiwindow.mainloop()
 		return self.x
-		
+	def Take_password(self,msg_in_head,msg_in_body):
+		root=guiwindow.Tk()
+		self.y=root
+		l = Label( text="Enter Password :")
+		l.pack( side = LEFT)
+		entry = guiwindow.Entry(show="*", font ="Helvetica 16",bd =0, width= 50)
+		self.z=entry
+		root.wm_title(msg_in_head)
+		entry.pack(side=LEFT)
+		button = guiwindow.Button( text="Get", command=self.button_command)
+		button.pack()
+		guiwindow.mainloop()
+		return self.x
