@@ -8,10 +8,10 @@
 ([A-Za-z]* )*refresh (this |the )?(page|link|webpage)( [A-Za-z]*)*###firefox###refresh
 ([A-Za-z]* )*go (back|back to the last page|back to the previous page|to the last page|to the previous page)( [A-Za-z]*)*###firefox###back
 ([A-Za-z]* )*go (forward (to the next page)*|to the next page)( [A-Za-z]*)*###firefox###forward
-([A-Za-z]* )*zoom(?!out)( in)?( [A-Za-z]*)*###firefox###zoom_in
+([A-Za-z]* )*zoom(?! out)( in)?( [A-Za-z]*)*###firefox###zoom_in
 ([A-Za-z]* )*zoom out( [A-Za-z]*)*###firefox###zoom_out
-([A-Za-z]* )*(scroll down (the page)? |go down)( [A-Za-z]*)*###firefox###scroll+down
-([A-Za-z]* )*(scroll up (the page)? |go up)( [A-Za-z]*)*###firefox###scroll_up
+([A-Za-z]* )*(scroll down( the page)?|go down)( [A-Za-z]*)*###firefox###scroll_down
+([A-Za-z]* )*(scroll up( the page)?|go up)( [A-Za-z]*)*###firefox###scroll_up
 ([A-Za-z]* )*(open|create|start) (the |a )?new tab( [A-Za-z]*)*###firefox###new_tab
 ([A-Za-z]* )*close (the |this )?(current )?tab( [A-Za-z]*)*###firefox###close_tab
 ([A-Za-z]* )*(show (me )?|open )(the )?next tab( [A-Za-z]*)*###firefox###next_tab
