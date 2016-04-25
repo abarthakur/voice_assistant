@@ -5,6 +5,7 @@ import time
 import Queue
 import execution
 import decider
+import re
 
 def start_threads():
 	controlThread=Control(1,"control")
@@ -22,6 +23,14 @@ class Control(threading.Thread):
 		self.name = name
 		self.create_listener()
 		self.parser= parse.Parser()
+		with open("SAVED_DIRS.txt","r") as f:
+			saved_dirs={}
+			for line in f.readlines():
+				mo=re.match(r'(.*)####(.*)',line)
+				saved_dirs[mo.group(1)]=mo.group(2)
+			self.SAVED_DIRS=saved_dirs
+			print self.SAVED_DIRS
+
 
 	def run(self):
 		print "Starting " + self.name
