@@ -100,6 +100,8 @@ def sanity_check_movie(func,param,msg):
 
 def exec_cmd(task):
 	# task={"module":"movie","func":"pause","param":[]}
+	if not task:
+		return
 	modules=["firefox","process","music","movie","terminal"]
 	for module in modules:
 		commands[module]=import_function(module)

@@ -50,3 +50,5 @@ restart system terminal restart
 lock system terminal lock
 logout system terminal logout
 open app terminal open app
+open browser firefox start_window
+close browser firefox close_window

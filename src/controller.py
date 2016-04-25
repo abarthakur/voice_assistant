@@ -4,6 +4,7 @@ import threading
 import time
 import Queue
 import execution
+import decider
 
 def start_threads():
 	controlThread=Control(1,"control")
@@ -32,8 +33,14 @@ class Control(threading.Thread):
 			if text :
 				out_file.write(text+"\n")
 				parse_res=self.parser.parse_sent(text)
+				print parse_res
 				out_file.write(str(parse_res)+"\n")
-				#execution.exec_cmd(task)	
+				task=decider.generate(parse_res)
+				print task
+				if not task :
+					task=decider.resolve(parse_res)
+				print task
+				execution.exec_cmd(task)	
 		out_file.close()		
 		print "Exiting " + self.name
 
