@@ -29,8 +29,23 @@ class Parser(object):
 				child.parent=s
 				(verb,vtree) = self.extract_pred(child)
 				(obj,otree)=self.extract_obj(vtree)
-
+				break
+		v_attr=None
+		o_attr=None
 		results = {}
+		if(vtree):
+			v_attr=self.extract_attr(vtree)
+			v_attr2=self.parse_attr(v_attr,True,False)
+			results["v_attr"]=v_attr2
+		if otree:
+			o_attr=self.extract_attr(otree)
+			o_attr2=self.extract_attr(o_attr)
+			results["o_attr"]=o_attr2
+		# print verb
+		# print v_attr
+		# print obj
+		# print o_attr
+		
 		results['input']=sent
 		results['verb']=verb
 		results['object']=obj
@@ -87,12 +102,21 @@ class Parser(object):
 						objtree=x
 		return (obj,objtree)
 
+	def parse_attr(self,attrs,verb,object):
+		new_attrs={}
+		if object:
+			if attrs.has_key("JJ"):
+				new_attrs["adjective"]=attrs["JJ"].leaves()
+		return new_attrs		
+
+
+
 
 	def extract_attr(self,word_subtree):
 		if word_subtree==None :
 			return []
 		par=word_subtree.parent
-		attrs=[]
+		attrs={}
 		if word_subtree.label()[0:2]=="JJ" :
 			for child in par:
 				if(child.label()=="RB"):
@@ -100,21 +124,25 @@ class Parser(object):
 		elif word_subtree.label()[0:2]=="NN":
 			for child in par :
 				if child.label() in ["DT","PRP$","POS","JJ","CD","ADJP","QP","NP"] :
-					attrs.append((child.label()," ".join(child.leaves())))
+					#attrs.append((child.label()," ".join(child.leaves())))
+					attrs[child.label()]=child
 		elif word_subtree.label()[0:2]=="VB":
 			for child in par:
 				if(child.label()=="ADVP"):
-					attrs.append(("ADVP"," ".join(child.leaves())))
+					#attrs.append(("ADVP"," ".join(child.leaves())))
+					attrs[child.label()]=child
 
 		grandpar=par.parent
 		if word_subtree.label()[0:2] in ["NN","JJ"]:
 			for uncle in grandpar:
 				if uncle.label() == "PP":
-					attrs.append(("PP"," ".join(uncle.leaves())))
+					# attrs.append(("PP"," ".join(uncle.leaves())))
+					attrs[uncle.label()]=uncle
 		elif word_subtree.label()[0:2] =="VB" :
 			for uncle in grandpar:
 				if uncle.label()[0:2]=="VB":
-					attrs.append(("VB"," ".join(child.leaves())))
+					# attrs.append(("VB"," ".join(child.leaves())))
+					attrs[uncle.label()]=uncle
 		return attrs
 
 
@@ -130,6 +158,6 @@ class Parser(object):
 			#out_file.write("verb="+verb+",v_attr="+str(v_attr)+",obj="+obj+",o_attr"+str(o_attr)+"\n"+ sent+"\n")
 
 
-# par=Parser()
-# par.verify_coms()
-# print par.parse_sent("Play a song")
+par=Parser()
+#par.verify_coms()
+print par.parse_sent("Play it faster")
