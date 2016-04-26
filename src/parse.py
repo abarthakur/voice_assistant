@@ -57,7 +57,7 @@ class Parser(object):
 		
 		results['input']=sent
 		results['verb']=verb
-		results['object']=object
+		results['object']=obj
 		return results
 		# print verb
 		# print extract_attr(tree)
