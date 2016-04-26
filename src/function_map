@@ -1,5 +1,4 @@
 listen song music play
-play song music play
 start song music play
 pause song music pause
 stop song music pause
@@ -38,31 +37,6 @@ search string file search string
 open folder file open_outer_directory
 cut file file move_item item destination
 copy file file copy_item item destination
-maximize window process maximize calculator
-maximize window process maximize terminal
-maximize window process maximize gedit
-maximize window process maximize LibreOffice
-maximize window process maximize System
-minimize window process minimize calculator
-minimize window process minimize terminal
-minimize window process minimize gedit
-minimize window process minimize LibreOffice
-minimize window process minimize System
-foreground window process foreground calculator
-foreground window process foreground terminal
-foreground window process foreground gedit
-foreground window process foreground LibreOffice
-foreground window process foreground System
-close window process close calculator
-close window process close terminal
-close window process close gedit
-close window process close LibreOffice
-close window process close System
-quit window process close calculator
-quit window process close terminal
-quit window process close gedit
-quit window process close LibreOffice
-quit window process close System
 update system terminal update
 upgrade system terminal upgrade
 shutdown system terminal shutdown
@@ -109,3 +83,28 @@ delete history firefox delete_history
 print page firefox print_page
 start listening control startListening
 stop listening control stopListening
+maximize window process maximize calculator
+maximize window process maximize terminal
+maximize window process maximize gedit
+maximize window process maximize LibreOffice
+maximize window process maximize System
+minimize window process minimize calculator
+minimize window process minimize terminal
+minimize window process minimize gedit
+minimize window process minimize LibreOffice
+minimize window process minimize System
+foreground window process foreground calculator
+foreground window process foreground terminal
+foreground window process foreground gedit
+foreground window process foreground LibreOffice
+foreground window process foreground System
+close window process close calculator
+close window process close terminal
+close window process close gedit
+close window process close LibreOffice
+close window process close System
+quit window process close calculator
+quit window process close terminal
+quit window process close gedit
+quit window process close LibreOffice
+quit window process close System
