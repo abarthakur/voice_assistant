@@ -78,11 +78,7 @@ def sanity_check_terminal(func,param,msg):
 		else:
 			return True
 	else:
-		confirm=gui.Ask_yes_or_no("Request for confirmation","Are you sure you want to "+func+" your system ?")
-		if not confirm:
-			return False
-		# password=gui.Take_input("Authentication Needed","Please enter your password")
-		# print str(password)+"hello"
+		
 		return True
 
 def sanity_check_music(func,param,msg):
@@ -100,6 +96,8 @@ def sanity_check_movie(func,param,msg):
 
 def exec_cmd(task):
 	# task={"module":"movie","func":"pause","param":[]}
+	if not task:
+		return
 	modules=["firefox","process","music","movie","terminal"]
 	for module in modules:
 		commands[module]=import_function(module)
@@ -121,9 +119,13 @@ def exec_cmd(task):
 
 	if not allow or not valid:
 		if msg:
+			print "Not Allowed"
 			print msg
 	else:
 		execute=getattr(__import__(task["module"]),task["func"])
-		execute(*parameter)
+		if parameter:
+			execute(parameter)
+		else:
+			execute()
  			
 

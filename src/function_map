@@ -1,0 +1,110 @@
+listen song music play
+start song music play
+pause song music pause
+stop song music pause
+volume song music vol_high
+next song music next
+post song music next
+previous song music next
+pre song music next
+restart song music restart
+replay song music restart
+hide song music hide
+end song music quit
+quit song music quit
+play movie movie play
+start movie movie play
+pause movie movie pause
+stop movie movie pause
+next movie movie next
+post movie movie next
+previous movie movie previous
+pre movie movie next
+volume movie movie vol_high
+forward movie movie forward
+backward movie movie backward
+fullscreen movie movie fullscreen
+screen movie movie fullscreen
+mute movie movie mute
+end movie movie quit
+quit movie movie quit
+show filepath file get_browser_path
+create directory file create_directory
+open file file open_file file
+delete file file delete inp
+remove file file delete inp
+search string file search string
+open folder file open_outer_directory
+cut file file move_item item destination
+copy file file copy_item item destination
+update system terminal update
+upgrade system terminal upgrade
+shutdown system terminal shutdown
+restart system terminal restart
+lock system terminal lock
+logout system terminal logout
+open app terminal open app
+open firefox firefox start_window
+start firefox firefox start_window
+run firefox firefox start_window
+open mozilla firefox start_window
+start mozilla firefox start_window
+run mozilla firefox start_window
+open browser firefox start_window
+start browser firefox start_window
+run browser firefox start_window
+close browser firefox close_window
+close mozilla firefox close_window
+close firefox firefox close_window
+maximize firefox firefox maximize
+maximise firefox firefox maximize
+minimize firefox firefox minimize
+minimise firefox firefox minimize
+open tab firefox new_tab
+close tab firefox close_tab
+next tab firefox next_tab
+previous tab firefox previous_tab
+last tab firefox previous_tab
+scroll down firefox scroll_down
+scroll up firefox scroll_up
+zoom in firefox zoom_in
+zoom out firefox zoom_out
+go forward firefox forward
+go backward firefox back
+go back firefox back
+last page firefox back
+previous page firefox back
+refresh page firefox refresh
+reload page firefox reload
+add bookmark firefox bookmark
+open bookmark firefox open_bookmark
+show history firefox history
+delete history firefox delete_history
+print page firefox print_page
+start listening control startListening
+stop listening control stopListening
+maximize window process maximize calculator
+maximize window process maximize terminal
+maximize window process maximize gedit
+maximize window process maximize LibreOffice
+maximize window process maximize System
+minimize window process minimize calculator
+minimize window process minimize terminal
+minimize window process minimize gedit
+minimize window process minimize LibreOffice
+minimize window process minimize System
+foreground window process foreground calculator
+foreground window process foreground terminal
+foreground window process foreground gedit
+foreground window process foreground LibreOffice
+foreground window process foreground System
+close window process close calculator
+close window process close terminal
+close window process close gedit
+close window process close LibreOffice
+close window process close System
+quit window process close calculator
+quit window process close terminal
+quit window process close gedit
+quit window process close LibreOffice
+quit window process close System
