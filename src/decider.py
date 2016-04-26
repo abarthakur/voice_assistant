@@ -34,13 +34,20 @@ def resolve(features):
 		template=t[0]
 		try:
 			if (re.match(template, string)):
+				m=re.match(template, string)
 				task['module']=t[1]
 				task['func']=t[2]
 				if len(t)>3:
-					task['param']=terms[3:]
+					num=int(t[3])
+					print m.groups()
+					substr=m.groups()[num]
+					print substr
+					task['param']=substr
 				else:
 					task['param']=[]
 				return  task
 		except:
 			print "Sorry Didn't get you"
 	return task
+
+  
