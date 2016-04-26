@@ -21,7 +21,6 @@ class Control(threading.Thread):
 		threading.Thread.__init__(self)
 		self.threadID = threadID
 		self.name = name
-		self.create_listener()
 		self.parser= parse.Parser()
 		with open("SAVED_DIRS.txt","r") as f:
 			saved_dirs={}
@@ -35,11 +34,14 @@ class Control(threading.Thread):
 	def run(self):
 		print "Starting " + self.name
 		#start listener
+		self.create_listener()
 		self.listenerThread.start()
 		out_file = open("out.txt","a")
+		do_listen=True
 		while (self.listenerThread.isAlive() and not self.kill_listener.isSet()):
 			text=self.workQueue.get(True)
 			if text :
+				text=text.lower().strip()
 				out_file.write(text+"\n")
 				parse_res=self.parser.parse_sent(text)
 				print parse_res
@@ -49,7 +51,18 @@ class Control(threading.Thread):
 				if not task :
 					task=decider.resolve(parse_res)
 				print task
-				execution.exec_cmd(task)	
+				try :
+					if task['module']=="control":
+						if task['func']=="startListening":
+							do_listen=True
+						else :
+							do_listen=False
+					else:
+						if do_listen:
+							execution.exec_cmd(task)	
+				except KeyError:
+					print "Oops! Can you repeat that?"
+					
 		out_file.close()		
 		print "Exiting " + self.name
 
@@ -77,7 +90,28 @@ class Control(threading.Thread):
 		self.kill_listener.set()
 		self.listenerThread=None
 	def stopListening(self):
-		self.stopListening.set()
+		self.listen.clear()	
 	def startListening(self):
 		self.listen.set()
+
+	def test (self,text):
+		text=text.lower().strip()
+		parse_res=self.parser.parse_sent(text)
+		print parse_res
+		task=decider.generate(parse_res)
+		print task
+		if not task :
+			task=decider.resolve(parse_res)
+		print task
+		if task['module']=="control":
+			if task['func']=="startListening":
+				self.startListening()
+			else :
+				self.stopListening()
+		execution.exec_cmd(task)
+
 start_threads()
+# x= Control(1,"abcd")
+# while (True):
+# 	t=raw_input("Input:")
+# 	x.test(t)
