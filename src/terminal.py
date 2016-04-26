@@ -27,6 +27,6 @@ def open(app): # Run the application mentioned as app
 	app_dict['LibreDraw']='libreoffice --draw'
 	app_dict['LibrePresentation']='libreoffice --impress'
 	app_dict['calculator']='gnome-calculator'
-	app_dict['sublime']='subl'
+	app_dict['sublime text']='subl'
 
 	os.system(app_dict[app])
