@@ -6,6 +6,7 @@ import Queue
 import execution
 import decider
 import re
+import gui
 
 def start_threads():
 	controlThread=Control(1,"control")
@@ -22,6 +23,9 @@ class Control(threading.Thread):
 		self.threadID = threadID
 		self.name = name
 		self.parser= parse.Parser()
+		self.guiQ=Queue.Queue(10)
+		self.gui=gui.Gui(2,"gui",self.guiQ)
+
 		with open("SAVED_DIRS.txt","r") as f:
 			saved_dirs={}
 			for line in f.readlines():
@@ -36,10 +40,18 @@ class Control(threading.Thread):
 		#start listener
 		self.create_listener()
 		self.listenerThread.start()
+		self.gui.start()
 		out_file = open("out.txt","a")
 		do_listen=True
+		guiItem={}
 		while (self.listenerThread.isAlive() and not self.kill_listener.isSet()):
+			print "abc"
 			text=self.workQueue.get(True)
+			if do_listen:
+				guiItem["yousaid"]=text	
+			else:
+				guiItem["yousaid"]="nothing!"
+			self.guiQ.put(item=guiItem,block=True)
 			if text :
 				text=text.lower().strip()
 				out_file.write(text+"\n")
