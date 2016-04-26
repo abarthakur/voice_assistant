@@ -3,23 +3,25 @@ from Tkinter import *
 import tkMessageBox
 import Queue
 import threading
+import time
 
 class Gui(threading.Thread):
 	#initializer
-	def __init__(self, threadID, name,guiQueue):
+	def __init__(self, threadID, name,guiQueue,queueLock):
 		threading.Thread.__init__(self)
 		self.threadID = threadID
 		self.name = name
 		self.myQueue=guiQueue
-		(self.mainwindow,self.youSaid,self.systemMsg)=self.create_mainwindow()
+		# (self.mainwindow,self.youSaid,self.systemMsg)=self.create_mainwindow()
+		self.queueLock=queueLock
 
 	def run(self):
-		self.mainwindow.after(100,check)
-		self.mainwindow.mainloop()
+		# self.mainwindow.after(100,self.check)
+		self.create_mainwindow()
 
 
 	def create_mainwindow(self):
-		root=Tk()
+		root=guiwindow.Tk()
 		topframe=Frame(root)
 		botframe=Frame(root)
 		topframe.pack(side=TOP)
@@ -41,14 +43,23 @@ class Gui(threading.Thread):
 		lab2.pack(side=BOTTOM)
 		lab3.pack(side=TOP)
 		lab4.pack(side=BOTTOM)
-		return root,var,var2
+		root.after(100,self.check)
+		self.mainwindow=root
+		self.youSaid=var
+		self.systemMsg=var2
+		root.mainloop()
 
 	def check(self):
+		print "something"
+		# self.queueLock.acquire()
 		msgs=self.myQueue.get(True)
+		# self.queueLock.release()
+		print "From gui :",msgs
 		if msgs.has_key("yousaid"):
-			self.youSaid=msgs["yousaid"]
+			self.youSaid.set(msgs["yousaid"])
 		if msgs.has_key("systemMsg"):
-			self.systemMsg=msgs["systemMsg"]
+			self.systemMsg.set(msgs["systemMsg"])
+		self.mainwindow.after(100,self.check)
 
 	#this function will psop up a window asking yes or no
 	def Ask_yes_or_no(self, msg_in_head, msg_in_body):
@@ -136,4 +147,15 @@ class Gui(threading.Thread):
 		guiwindow.mainloop()
 		return self.x
 
-
+queueLock = threading.Lock()
+q= Queue.Queue(10)
+x=Gui(1,"gui",q,queueLock)
+x.start()
+item={"yousaid":"abcd","systemMsg":"ghik"}
+for i in range(0,10):
+	queueLock.acquire()
+	item["yousaid"]=str(i)
+	print item
+	q.put(item=item,block=True)
+	queueLock.release()
+	time.sleep(1)
