@@ -7,13 +7,13 @@ import time
 
 class Gui(threading.Thread):
 	#initializer
-	def __init__(self, threadID, name,guiQueue,queueLock):
+	def __init__(self, threadID, name,guiQueue):
 		threading.Thread.__init__(self)
 		self.threadID = threadID
 		self.name = name
 		self.myQueue=guiQueue
 		# (self.mainwindow,self.youSaid,self.systemMsg)=self.create_mainwindow()
-		self.queueLock=queueLock
+		
 
 	def run(self):
 		# self.mainwindow.after(100,self.check)
@@ -147,15 +147,15 @@ class Gui(threading.Thread):
 		guiwindow.mainloop()
 		return self.x
 
-queueLock = threading.Lock()
-q= Queue.Queue(10)
-x=Gui(1,"gui",q,queueLock)
-x.start()
-item={"yousaid":"abcd","systemMsg":"ghik"}
-for i in range(0,10):
-	queueLock.acquire()
-	item["yousaid"]=str(i)
-	print item
-	q.put(item=item,block=True)
-	queueLock.release()
-	time.sleep(1)
+# queueLock = threading.Lock()
+# q= Queue.Queue(10)
+# x=Gui(1,"gui",q,queueLock)
+# x.start()
+# item={"yousaid":"abcd","systemMsg":"ghik"}
+# for i in range(0,10):
+# 	queueLock.acquire()
+# 	item["yousaid"]=str(i)
+# 	print item
+# 	q.put(item=item,block=True)
+# 	queueLock.release()
+# 	time.sleep(1)
