@@ -20,9 +20,9 @@
 ([A-Za-z]* )*(maximise|maximize) (the |this )?(firefox|mozilla firefox|firefox|browser)( [A-Za-z]*)*###firefox###maximize
 ([A-Za-z]* )*(open|start|launch) (the )?(browser|firefox|mozilla firefox|mozilla)( [A-Za-z]*)*###firefox###start_window
 ([A-Za-z]* )*(close|stop) (the )?(browser|firefox|mozilla firefox|mozilla)( [A-Za-z]*)*###firefox###close_window
-([A-Za-z]* )*(previous|last) song( [A-Za-z]*)*###music##previous
+([A-Za-z]* )*(previous|last) song( [A-Za-z]*)*###music###previous
 ([A-Za-z]* )*next song( [A-Za-z]*)*###music###next
-([A-Za-z]* )*hide (the)? (music player|rhythmbox)( [A-Za-z]*)*###music###hide
+([A-Za-z]* )*(quit|close)( the)? (music player|rhythmbox)( [A-Za-z]*)*###music###hide
 ([A-Za-z]* )*pause (the )?(song)?( [A-Za-z]*)*###music###pause
 ([A-Za-z]* )*(start the song again|restart the song)( [A-Za-z]*)*###music###restart
 ([A-Za-z]* )*(play)( [A-Za-z]*)*(song|music)###music###play
@@ -39,4 +39,13 @@
 ([A-Za-z]* )*(maximise)( the)?(( [A-Za-z]*)*)( window)?###process###maximize###3
 ([A-Za-z]* )*(close)( the)?(( [A-Za-z]*)*)( window)?###process###close###4
 ([A-Za-z]* )*(bring )(the )?(([A-Za-z]* )*)to (the )?(front|foreground)###process###foreground###3
-([A-Za-z]* )*(open|start|launch)(( [A-Za-z]*)*)###terminal###open###2	
+([A-Za-z]* )*(open|start|launch)(( [A-Za-z]*)*)###terminal###open###2
+([A-Za-z]* )*play( the| this)?( movie| video)( [A-Za-z]*)*###movie###play
+([A-Za-z]* )*pause( the| this)?( movie| video)( [A-Za-z]*)*###movie###pause
+([A-Za-z]* )*fast forward( the| this)?( movie| video)( [A-Za-z]*)*###movie###forward
+([A-Za-z]* )*rewind( the| this)?( movie| video)( [A-Za-z]*)*###movie###backward
+([A-Za-z]* )*mute( the| this)?( movie| video)( [A-Za-z]*)*###movie###mute
+([A-Za-z]* )*play( the| this)? next( movie| video)( [A-Za-z]*)*###movie###next
+([A-Za-z]* )*play( the| this)? previous( movie| video)( [A-Za-z]*)*###movie###previous
+([A-Za-z]* )*fullscreen( [A-Za-z]*)*###movie###fullscreen
+([A-Za-z]* )*(close|quit)( the)?( movie player| totem)( [A-Za-z]*)*###movie###backward	

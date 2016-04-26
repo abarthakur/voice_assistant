@@ -22,11 +22,12 @@ def logout(): # Log out the current session
  
 def open(app): # Run the application mentioned as app
 	app_dict={} # Stores the command to launch app
+	app=app.strip()
 	app_dict['LibreWriter']='libreoffice --writer'
 	app_dict['LibreSpread']='libreoffice --calc'
 	app_dict['LibreDraw']='libreoffice --draw'
 	app_dict['LibrePresentation']='libreoffice --impress'
-	app_dict['calculator']='gnome-calculator'
+	app_dict['calculator']='gnome-calculator & disown'
 	app_dict['sublime text']='subl'
 
 	os.system(app_dict[app])

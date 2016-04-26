@@ -46,7 +46,7 @@ class Control(threading.Thread):
 		self.listenerThread.start()
 		self.gui.start()
 		out_file = open("out.txt","a")
-		do_listen=True
+		do_listen=True	
 		guiItem={}
 		while (self.listenerThread.isAlive() and not self.kill_listener.isSet() and not self.killall.isSet()):
 			print "abc"
@@ -81,7 +81,10 @@ class Control(threading.Thread):
 							do_listen=False
 					else:
 						if do_listen:
-							execution.exec_cmd(task)	
+							try:
+								execution.exec_cmd(task)	
+							except:
+								print "ops"
 				except KeyError:
 					print "Oops! Can you repeat that?"
 					
