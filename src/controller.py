@@ -51,10 +51,10 @@ class Control(threading.Thread):
 		while (self.listenerThread.isAlive() and not self.kill_listener.isSet() and not self.killall.isSet()):
 			print "abc"
 			#print self.killall.isSet()
-			if self.stop_listen.isSet():
-				do_listen=True
-			else:
-				do_listen=False
+			# if self.stop_listen.isSet():
+			# 	do_listen=True
+			# else:202.141.80.22
+			# 	do_listen=False
 			text=self.workQueue.get(True)
 			if do_listen:
 				guiItem["yousaid"]=text	
