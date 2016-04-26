@@ -107,4 +107,3 @@ open bookmark firefox open_bookmark
 show history firefox history
 delete history firefox delete_history
 print page firefox print_page
-
