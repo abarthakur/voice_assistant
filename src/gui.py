@@ -7,11 +7,13 @@ import time
 
 class Gui(threading.Thread):
 	#initializer
-	def __init__(self, threadID, name,guiQueue):
+	def __init__(self, threadID, name,guiQueue,killall,stoplisten):
 		threading.Thread.__init__(self)
 		self.threadID = threadID
 		self.name = name
 		self.myQueue=guiQueue
+		self.killall=killall
+		self.stoplisten=stoplisten
 		# (self.mainwindow,self.youSaid,self.systemMsg)=self.create_mainwindow()
 		
 
@@ -25,7 +27,9 @@ class Gui(threading.Thread):
 		topframe=Frame(root)
 		botframe=Frame(root)
 		topframe.pack(side=TOP)
-		botframe.pack(side=BOTTOM)
+		botframe.pack()
+		# bot2frame=Frame(root)
+		# bot2frame.pack(side=BOTTOM)
 		ys=StringVar()
 		ys.set("You said :")
 		sm=StringVar()
@@ -34,7 +38,11 @@ class Gui(threading.Thread):
 		var.set(".....")
 		var2=StringVar()
 		var2.set(".....")
-
+		# button1 = Button(bot2frame, text="Exit", command=self.exit_command)
+		# button2 = Button(bot2frame, text="Stop Listening", command=self.listener_command)
+		# button1.pack(side=RIGHT)
+		# button2.pack(side=LEFT)
+		# self.b2=button2
 		lab=Label(topframe,textvariable=ys,justify=LEFT,padx=1)
 		lab2=Label(topframe,textvariable=var,justify=LEFT,padx=2,relief=SUNKEN)
 		lab3=Label(botframe,textvariable=sm,justify=LEFT,padx=1)
@@ -49,12 +57,25 @@ class Gui(threading.Thread):
 		self.systemMsg=var2
 		root.mainloop()
 
+	def exit_command(self):
+		self.killall.set()
+		self.mainwindow.destroy()
+	def listener_command(self):
+		if not self.stoplisten.isSet():
+			self.stoplisten.set()
+			# self.b2
+		else :
+			self.stoplisten.clear()
 	def check(self):
-		print "something"
+		# print "something"
 		# self.queueLock.acquire()
-		msgs=self.myQueue.get(True)
+		msgs={}
+		try :
+			msgs=self.myQueue.get(block=True,timeout=1)
+		except:
+			pass
 		# self.queueLock.release()
-		print "From gui :",msgs
+		# print "From gui :",msgs
 		if msgs.has_key("yousaid"):
 			self.youSaid.set(msgs["yousaid"])
 		if msgs.has_key("systemMsg"):
