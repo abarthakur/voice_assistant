@@ -6,9 +6,10 @@ def play():
 def pause():
 	os.system('rhythmbox-client --pause')
 def vol_up():
-	os.system('rhythmbox-client --volume-up')
+	os.system('rhythmbox-client --volume-up \n rhythmbox-client --volume-up \n rhythmbox-client --volume-up \n rhythmbox-client --volume-up \n rhythmbox-client --volume-up \n rhythmbox-client --volume-up')
 def vol_down():
-	os.system('rhythmbox-client --volume-down')
+	os.system('rhythmbox-client --volume-down \nrhythmbox-client --volume-down\nrhythmbox-client --volume-down\nrhythmbox-client --volume-down\nrhythmbox-client --volume-down\nrhythmbox-client --volume-down')
+
 def next():
 	os.system('rhythmbox-client --play \n rhythmbox-client --next')
 def previous():
