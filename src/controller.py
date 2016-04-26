@@ -24,7 +24,11 @@ class Control(threading.Thread):
 		self.name = name
 		self.parser= parse.Parser()
 		self.guiQ=Queue.Queue(10)
-		self.gui=gui.Gui(2,"gui",self.guiQ)
+		self.killall=threading.Event()
+		self.killall.clear()
+		self.stop_listen=threading.Event()
+		self.stop_listen.clear()
+		self.gui=gui.Gui(2,"gui",self.guiQ,self.killall,self.stop_listen)
 
 		with open("SAVED_DIRS.txt","r") as f:
 			saved_dirs={}
@@ -44,8 +48,13 @@ class Control(threading.Thread):
 		out_file = open("out.txt","a")
 		do_listen=True
 		guiItem={}
-		while (self.listenerThread.isAlive() and not self.kill_listener.isSet()):
+		while (self.listenerThread.isAlive() and not self.kill_listener.isSet() and not self.killall.isSet()):
 			print "abc"
+			#print self.killall.isSet()
+			if self.stop_listen.isSet():
+				do_listen=True
+			else:
+				do_listen=False
 			text=self.workQueue.get(True)
 			if do_listen:
 				guiItem["yousaid"]=text	
@@ -54,7 +63,7 @@ class Control(threading.Thread):
 			self.guiQ.put(item=guiItem,block=True)
 			if text :
 				text=text.lower().strip()
-				out_file.write(text+"\n")
+				# out_file.write(text+"\n")
 				parse_res=self.parser.parse_sent(text)
 				print parse_res
 				out_file.write(str(parse_res)+"\n")
@@ -68,6 +77,7 @@ class Control(threading.Thread):
 						if task['func']=="startListening":
 							do_listen=True
 						else :
+							self.stop_listen.clear()
 							do_listen=False
 					else:
 						if do_listen:
@@ -75,7 +85,8 @@ class Control(threading.Thread):
 				except KeyError:
 					print "Oops! Can you repeat that?"
 					
-		out_file.close()		
+		# out_file.close()
+		self.kill_listener.set()		
 		print "Exiting " + self.name
 
 	def create_listener(self):
