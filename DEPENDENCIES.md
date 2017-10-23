@@ -20,10 +20,12 @@ The following packages need to be installed before installing the package
 1. **Python**
 	Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006 Python Software Foundation; All Rights Reserved" are retained in Python alone or in any derivative version prepared by Licensee.
 
-2. **speech_recognition**
+2. **SpeechRecognition**
 	Speech recognition module for Python, supporting CMU Sphinx, Google Speech Recognition, Wit.ai, IBM Speech to Text, and AT&T Speech to Text. https://pypi.python.org/pypi/SpeechRecognition/
 	Copyright (c) 2014-2016, Anthony Zhang <azhang9@gmail.com>
 	All rights reserved.
+	
+	SpeechRecognition has several dependencies as well, which need to be installed such as PyAudio which need to be satisfied as well
 
 3. **Pyttsx**
 	Cross-platform Python wrapper for text-to-speech synthesis
@@ -40,9 +42,6 @@ The following packages need to be installed before installing the package
 	A cross-platform module for GUI automation for human beings. Control the keyboard and mouse from a Python script.
 	Under BSD License
 
-7. **Sikuli**
-	Sikuli is a visual technology to automate graphical user interfaces (GUI) using images (screenshots).
-	Copyright (c) 2010-2011 Sikuli.org
 
 ###Attributions:
 
