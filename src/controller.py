@@ -30,13 +30,13 @@ class Control(threading.Thread):
 		self.stop_listen.clear()
 		self.gui=gui.Gui(2,"gui",self.guiQ,self.killall,self.stop_listen)
 
-		with open("SAVED_DIRS.txt","r") as f:
-			saved_dirs={}
-			for line in f.readlines():
-				mo=re.match(r'(.*)####(.*)',line)
-				saved_dirs[mo.group(1)]=mo.group(2)
-			self.SAVED_DIRS=saved_dirs
-			print self.SAVED_DIRS
+		# with open("SAVED_DIRS.txt","r") as f:
+		# 	saved_dirs={}
+		# 	for line in f.readlines():
+		# 		mo=re.match(r'(.*)####(.*)',line)
+		# 		saved_dirs[mo.group(1)]=mo.group(2)
+		# 	self.SAVED_DIRS=saved_dirs
+		# 	print self.SAVED_DIRS
 
 
 	def run(self):
