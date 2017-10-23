@@ -49,5 +49,3 @@ def resolve(features):
 		except:
 			print "Sorry Didn't get you"
 	return task
-
-  
